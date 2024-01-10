@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="images/favicon.svg" type="image/x-icon" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="fonts/style.css" />
   </head>
   <body>
     <div class="nav">
@@ -307,31 +308,33 @@
         <div class="contact_headings">
           <h1><span class="gradient-text">Get in touch</span></h1>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia corrupti unde quod voluptate accusamus nam quos architecto recusandae asperiores illo?</p>
-          <div class="contact_etails">
-            <a href=""><i class="icon icon-phone"></i>+92 347 721 1767</a>
-            <a href=""><i class="icon icon-email"></i>example@email.com</a>
+          <div class="contact_details">
+            <a class="contact_item" href=""><i class="icon icon-sms"></i><span>+92 347 721 1767</span></a>
+            <a class="contact_item" href=""><i class="icon icon-mobile"></i><span>example@email.com</span></a>
           </div>
         </div>
         <div class="contact_form">
           <form action="">
             <div class="input-group">
               <label for="fullname">Full Name</label>
-              <input type="text" id="fullname" />
+              <input type="text" id="fullname" placeholder="Enter Your Full Name"/>
             </div>
             <div class="input-group">
               <label for="email">Email</label>
-              <input type="email" id="email"/>
+              <input type="email" id="email" placeholder="Enter Your Email"/>
             </div>
             <div class="input-group">
               <label for="budget">Your Budget</label>
-              <input type="number" id="budget"/>
+              <input type="number" id="budget" placeholder="1k-3k"/>
             </div>
             <div class="input-group">
-              <label for="message">Instructions</label>
-              <input type="text" id="message"/>
+              <label for="message">Tell me a bit more what you are looking for?</label>
+              <input type="text" id="message" placeholder="Enter the details"/>
             </div>
 
-            <a href=""></a>
+            <div class="btn-group mt-4">
+              <a class="btn btn-primary" href="#">Send Message</a>
+            </div>
           </form>
         </div>
       </div>
