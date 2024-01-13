@@ -4,36 +4,57 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="images/favicon.svg" type="image/x-icon" />
-    <title>Document</title>
+    <title>XFolio by REMI</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="fonts/style.css" />
+    <link rel="stylesheet" href="fonts/style.css" /><link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css" />
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting-cells.css" />
   </head>
   <body>
     <div class="nav">
       <div class="nav-right">
-        <img src="images/logo-dark.svg" alt="" />
+        <img class="logo-light" src="images/logo-light.svg" alt="" />
+        <img class="logo-dark" src="images/logo-dark.svg" alt="" />
         <div class="nav-links">
           <ul>
-            <li>Home</li>
-            <li>Services</li>
-            <li>Projects</li>
-            <li>About</li>
-            <li>Blog</li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#home">About</a></li>
+            <li><a href="#work">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
       </div>
-
-      <div class="nav-btn">
-        <a href="/">Let's Talk</a>
+      <div class="button-grp">
+        <a  href="/"class="nav-btn">Let's Talk</a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="auto" aria-live="polite" >
+          <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" >
+            <mask class="moon" id="moon-mask">
+              <rect x="0" y="0" width="100%" height="100%" fill="white" />
+              <circle cx="24" cy="10" r="6" fill="black" />
+            </mask>
+            <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
+            <g class="sun-beams" stroke="currentColor">
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </g>
+          </svg>
+        </button>
       </div>
     </div>
-    <div class="container">
+    <div class="container" id="container">
       <section id="home">
         <div class="herosection">
           <div class="hero-content">
             <h1>
-              <span class="gradient-text">Hello, I'm Kartik,</span> creative
-              designer based in India.
+              <span class="gradient-text">Hello, I'm Remi,</span><br>creative
+              designer<br>based in Pakistan.
             </h1>
             <p>
               A Product Designer and Visual Developer in India. I specialize in
@@ -49,7 +70,7 @@
       </section>
 
       <div class="gradient-stripe">
-        <div class="services">
+        <div class="services" id="services">
           <ul class="services-list">
             <li><img src="images/list-star.svg" alt="" />Design</li>
             <li><img src="images/list-star.svg" alt="" />Develop</li>
@@ -70,33 +91,29 @@
             <li><img src="images/list-star.svg" alt="" />Design</li>
             <li><img src="images/list-star.svg" alt="" />Develop</li>
             <li><img src="images/list-star.svg" alt="" />Discover</li>
+
+            <li><img src="images/list-star.svg" alt="" />Design</li>
+            <li><img src="images/list-star.svg" alt="" />Develop</li>
+            <li><img src="images/list-star.svg" alt="" />Discover</li>
+
+            <li><img src="images/list-star.svg" alt="" />Design</li>
+            <li><img src="images/list-star.svg" alt="" />Develop</li>
+            <li><img src="images/list-star.svg" alt="" />Discover</li>
           </ul>
         </div>
       </div>
 
-      <div class="container work">
+      <div class="container work" id="work">
         <div class="works">
           <div class="works-header">
             <h1>
               Design that solves <br />
-              <i>
-                <svg
-                  width="61"
-                  height="3"
-                  viewBox="0 0 61 3"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <line
-                    x1="0.112244"
-                    y1="1.66333"
-                    x2="60.3273"
-                    y2="1.66333"
-                    stroke="#1C1C22"
-                    stroke-width="2"
-                  />
-                </svg> </i
-              >problems, one <br />
+              <i class="line-title">
+                <svg viewBox="0 0 75 3">
+                  <path d="M0 1.5 L75 1.5" stroke-width="2" fill="none"></path>
+                </svg>
+              </i>
+              problems, one <br />
               <span class="gradient-text">product at a time</span>
             </h1>
           </div>
@@ -108,67 +125,19 @@
         <div class="work-list">
           <a href="#" class="work-item">
             <h1>UI/UX Design</h1>
-            <i
-              ><svg
-                width="40"
-                height="40"
-                viewBox="0 0 376 376"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M255.829 85.2474C241.353 88.086 226.309 89.5052 210.697 89.5052C178.053 89.5052 147.397 83.9701 118.728 72.8998L132.779 30.3217C159.461 41.6758 188.272 47.3529 219.212 47.3529C274.28 47.3529 317.568 31.7409 349.075 0.516968L375.9 27.767C344.676 59.2748 329.064 102.563 329.064 157.63C329.064 189.138 334.883 217.949 346.521 244.064L303.517 257.689C292.73 230.155 287.337 199.925 287.337 166.997C287.337 150.818 288.756 135.206 291.595 120.161L36.6929 375.489L0.927246 339.724L255.829 85.2474Z"
-                />
-              </svg>
-            </i>
+            <i id="arrow"></i>
           </a>
           <a href="#" class="work-item">
             <h1>Graphic Design</h1>
-            <i
-              ><svg
-                width="40"
-                height="40"
-                viewBox="0 0 376 376"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M255.829 85.2474C241.353 88.086 226.309 89.5052 210.697 89.5052C178.053 89.5052 147.397 83.9701 118.728 72.8998L132.779 30.3217C159.461 41.6758 188.272 47.3529 219.212 47.3529C274.28 47.3529 317.568 31.7409 349.075 0.516968L375.9 27.767C344.676 59.2748 329.064 102.563 329.064 157.63C329.064 189.138 334.883 217.949 346.521 244.064L303.517 257.689C292.73 230.155 287.337 199.925 287.337 166.997C287.337 150.818 288.756 135.206 291.595 120.161L36.6929 375.489L0.927246 339.724L255.829 85.2474Z"
-                />
-              </svg>
-            </i>
+            <i id="arrow"></i>
           </a>
           <a href="#" class="work-item">
             <h1>Web Design</h1>
-            <i
-              ><svg
-                width="40"
-                height="40"
-                viewBox="0 0 376 376"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M255.829 85.2474C241.353 88.086 226.309 89.5052 210.697 89.5052C178.053 89.5052 147.397 83.9701 118.728 72.8998L132.779 30.3217C159.461 41.6758 188.272 47.3529 219.212 47.3529C274.28 47.3529 317.568 31.7409 349.075 0.516968L375.9 27.767C344.676 59.2748 329.064 102.563 329.064 157.63C329.064 189.138 334.883 217.949 346.521 244.064L303.517 257.689C292.73 230.155 287.337 199.925 287.337 166.997C287.337 150.818 288.756 135.206 291.595 120.161L36.6929 375.489L0.927246 339.724L255.829 85.2474Z"
-                />
-              </svg>
-            </i>
+            <i id="arrow"></i>
           </a>
           <a href="#" class="work-item">
             <h1>Product Design</h1>
-            <i
-              ><svg
-                width="40"
-                height="40"
-                viewBox="0 0 376 376"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M255.829 85.2474C241.353 88.086 226.309 89.5052 210.697 89.5052C178.053 89.5052 147.397 83.9701 118.728 72.8998L132.779 30.3217C159.461 41.6758 188.272 47.3529 219.212 47.3529C274.28 47.3529 317.568 31.7409 349.075 0.516968L375.9 27.767C344.676 59.2748 329.064 102.563 329.064 157.63C329.064 189.138 334.883 217.949 346.521 244.064L303.517 257.689C292.73 230.155 287.337 199.925 287.337 166.997C287.337 150.818 288.756 135.206 291.595 120.161L36.6929 375.489L0.927246 339.724L255.829 85.2474Z"
-                />
-              </svg>
-            </i>
+            <i id="arrow"></i>
           </a>
         </div>
 
@@ -190,7 +159,7 @@
         </div>
       </div>
 
-      <div class="container projects">
+      <div class="container projects" id="projects">
         <div class="projects-header">
           <h1>Look at My <span class="gradient-text">Projects</span></h1>
           <p>
@@ -200,55 +169,56 @@
           </p>
         </div>
         <div class="project-showcase">
-          <div class="projects-card">
-            <a href="">
+          <a href="#" class="projects-card">
+            <div class="img-container">
               <img class="card-img" src="images/projects/1.png" alt="" />
-              <div class="card-body">
-                <h1>Freelance Landing Page</h1>
-                <h6>Landing Page UI Kit</h6>
-              </div>
-            </a>
-          </div>
-          <div class="projects-card">
-            <a href="">
+            </div>
+            <div class="card-body">
+              <h1>Freelance Landing Page</h1>
+              <h6>Landing Page UI Kit</h6>
+            </div>
+          </a>
+          <a href="#" class="projects-card">
+            <div class="img-container">
               <img class="card-img" src="images/projects/2.png" alt="" />
-              <div class="card-body">
-                <h1>Freelance Landing Page</h1>
-                <h6>Landing Page UI Kit</h6>
-              </div>
-            </a>
-          </div>
-          <div class="projects-card">
-            <a href="">
+            </div>
+            <div class="card-body">
+              <h1>Freelance Landing Page</h1>
+              <h6>Landing Page UI Kit</h6>
+            </div>
+          </a>
+          <a href="#" class="projects-card">
+            <div class="img-container">
               <img class="card-img" src="images/projects/3.png" alt="" />
-              <div class="card-body">
-                <h1>Freelance Landing Page</h1>
-                <h6>Landing Page UI Kit</h6>
-              </div>
-            </a>
-          </div>
-          <div class="projects-card">
-            <a href="">
+            </div>
+            <div class="card-body">
+              <h1>Freelance Landing Page</h1>
+              <h6>Landing Page UI Kit</h6>
+            </div>
+          </a>
+          <a href="#" class="projects-card">
+            <div class="img-container">
               <img class="card-img" src="images/projects/4.png" alt="" />
-              <div class="card-body">
-                <h1>Freelance Landing Page</h1>
-                <h6>Landing Page UI Kit</h6>
-              </div>
-            </a>
-          </div>
+            </div>
+            <div class="card-body">
+              <h1>Freelance Landing Page</h1>
+              <h6>Landing Page UI Kit</h6>
+            </div>
+          </a>
         </div>
         <div class="btn-group pt-3">
           <a href="" class="btn btn-secondary">Veiw all works</a>
         </div>
       </div>
-      <div class="container edu-exp">
+
+      <div class="container edu-exp" id="experience">
         <div class="exp-container">
           <h1><span class="gradient-text">Education</span></h1>
           <div class="exp-card">
             <a href="">
               <h2>Stanford University</h2>
               <div class="exp-desc">
-                <h6>Frontens Web eveloper Degree</h6>
+                <h6>Frontens Web Developer Degree</h6>
                 <li>2016-2020</li>
               </div>
             </a>
@@ -304,32 +274,52 @@
         </div>
       </div>
 
-      <div class="container contact">
+      <div class="container contact" id="contact">
         <div class="contact_headings">
           <h1><span class="gradient-text">Get in touch</span></h1>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia corrupti unde quod voluptate accusamus nam quos architecto recusandae asperiores illo?</p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia
+            corrupti unde quod voluptate accusamus nam quos architecto
+            recusandae asperiores illo?
+          </p>
           <div class="contact_details">
-            <a class="contact_item" href=""><i class="icon icon-sms"></i><span>+92 347 721 1767</span></a>
-            <a class="contact_item" href=""><i class="icon icon-mobile"></i><span>example@email.com</span></a>
+            <a class="contact_item" href=""
+              ><i class="icon icon-sms"></i><span>+92 347 721 1767</span></a
+            >
+            <a class="contact_item" href=""
+              ><i class="icon icon-mobile"></i><span>example@email.com</span></a
+            >
           </div>
         </div>
         <div class="contact_form">
           <form action="">
             <div class="input-group">
               <label for="fullname">Full Name</label>
-              <input type="text" id="fullname" placeholder="Enter Your Full Name"/>
+              <input
+                type="text"
+                id="fullname"
+                placeholder="Enter Your Full Name"
+              />
             </div>
             <div class="input-group">
               <label for="email">Email</label>
-              <input type="email" id="email" placeholder="Enter Your Email"/>
+              <input type="email" id="email" placeholder="Enter Your Email" />
             </div>
             <div class="input-group">
               <label for="budget">Your Budget</label>
-              <input type="number" id="budget" placeholder="1k-3k"/>
+              <input type="number" id="budget" placeholder="1k-3k" />
             </div>
             <div class="input-group">
-              <label for="message">Tell me a bit more what you are looking for?</label>
-              <input type="text" id="message" placeholder="Enter the details"/>
+              <label for="message"
+                >Tell me a bit more what you are looking for?</label
+              >
+
+              <textarea
+                rows="5"
+                type="text"
+                id="message"
+                placeholder="Enter the details"
+              ></textarea>
             </div>
 
             <div class="btn-group mt-4">
@@ -338,7 +328,66 @@
           </form>
         </div>
       </div>
+      
+      <h1 class="content__title" data-splitting data-effect5><span>REMI</span><span>AHMAD</span></h1>
+
+      <div class="container social">
+        <h1 class="title"><span class="gradient-text">Let's Get in Touch</span></h1>
+        <div class="social-inner_container">
+          <div class="social-inner_container_items">
+            <a href="#" class="social-item">
+              <div class="social-item_heading">
+                <h6>Follow On</h6>
+                <h2>Instagram</h2>
+              </div>
+              <i id="arrow"></i>
+            </a>
+            <a href="#" class="social-item">
+              <div class="social-item_heading">
+                <h6>Follow On</h6>
+                <h2>Discord</h2>
+              </div>
+              <i id="arrow"></i>
+            </a>
+          </div>
+          <div class="social-inner_container_items">
+            <a href="#" class="social-item">
+              <div class="social-item_heading">
+                <h6>Follow On</h6>
+                <h2>Twitter</h2>
+              </div>
+              <i id="arrow"></i>
+            </a>
+            <a href="#" class="social-item">
+              <div class="social-item_heading">
+                <h6>Follow On</h6>
+                <h2>Github</h2>
+              </div>
+              <i id="arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
+
+   
+    <div class="footer-bottom" id="footer">
+      <h6>Remi @ 2024</h6>
+      <h6>All Rights Reserved.</h6>
+    </div>
+
+    <svg
+      style="width: 0; height: 0; position: absolute"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <linearGradient id="svg-gradient" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="14.06%" stop-color="#b16cea" />
+        <stop offset="44.79%" stop-color="#ff5e69" />
+        <stop offset="71.87%" stop-color="#ff8a56" />
+        <stop offset="100%" stop-color="#ffa84b" />
+      </linearGradient>
+    </svg>
   </body>
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
@@ -346,5 +395,9 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   ></script>
+  <script src="https://sarathsaleem.github.io/grained/grained.min.js"></script>
+  <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js" integrity="sha512-EZI2cBcGPnmR89wTgVnN3602Yyi7muWo8y1B3a8WmIv1J9tYG+udH4LvmYjLiGp37yHB7FfaPBo8ly178m9g4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js" integrity="sha512-OzC82YiH3UmMMs6Ydd9f2i7mS+UFL5f977iIoJ6oy07AJT+ePds9QOEtqXztSH29Nzua59fYS36knmMcv79GOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="script.js"></script>
+
 </html>
