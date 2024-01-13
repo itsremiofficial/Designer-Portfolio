@@ -223,8 +223,8 @@ a {
 }
 
 .hero-content {
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: fit-content;
 }
 
 .hero-content h1 {
@@ -235,6 +235,7 @@ a {
   line-height: 1.1;
   color: var(--black-primary);
   margin: 1.5rem 0;
+  /* width: 600px; */
 }
 
 [data-theme="dark"] .hero-content h1{
@@ -260,16 +261,19 @@ a {
   font-style: normal;
   font-weight: 500;
   line-height: 30px;
-  width: 600px;
+  /* width: 600px; */
   margin: 2rem 0;
 }
 
 .herosection .hero-img {
   /* width: 350px; */
-  width: 400px;
+  width: 40%;
+  height: fit-content;
+  display: flex;
+  justify-content: flex-end;
 }
 .herosection .hero-img img {
-  width: 400px;
+  width: 600px;
 }
 .gradient-stripe {
   position: relative;

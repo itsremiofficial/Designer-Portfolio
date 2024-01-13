@@ -88,7 +88,8 @@ var options = {
 
 grained("#container", options);
 grained("#footer", options);
-// grained("#footer-bottom", options);
+grained("#hero-img", options);
+grained("#nav", options);
 // ANIMATED GRAIN ENDED
 
 document.addEventListener("DOMContentLoaded", function () {
