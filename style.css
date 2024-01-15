@@ -2,6 +2,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+@font-face {
+  font-family: "Offbit";
+  src: url("fonts/offbit.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
 :root {
   --main-font: "Bai Jamjuree", sans-serif;
   --paragraph-font: "Inter", sans-serif;
@@ -106,7 +114,9 @@ a {
     display: flex;
   }
 }
-
+.nav-small {
+  height:60px;
+}
 .nav {
   background-color: transparent;
   position: fixed;
@@ -117,10 +127,11 @@ a {
   height: 80px;
   width: 100vw;
   /* background: rgba(255, 255, 255, 0); */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(var(--black-secondary), 0.02);
   z-index: 999;
+  transition: height 0.3s ease-in-out;
 
   [data-theme="dark"] & {
     border: none;
@@ -245,7 +256,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 4rem;
+  padding: 2rem 4rem;
   flex-direction: column;
 }
 
@@ -318,7 +329,7 @@ p.paragraph {
 
 .gradient-stripe .services {
   position: relative;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.13);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -327,6 +338,16 @@ p.paragraph {
   transform: rotate(-2deg);
   width: 120%;
   top: -10px;
+}
+
+
+[data-theme="dark"] .gradient-stripe .services {
+  background: rgba(var(--black-secondary), 0.15);
+
+  li{
+    color: var(--white-primary);
+    font-weight: 500;
+  }
 }
 
 .services {
@@ -376,7 +397,7 @@ ul.services-list {
 .work {
   /* background: var(--white-secondary); */
   position: relative;
-  top: -50px;
+  padding: 5rem 0;
 }
 
 .works {
@@ -618,6 +639,8 @@ h1.title {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  z-index: 3;
+  transition: box-shadow 0.5s ease;
 }
 
 @media (max-width: 1440px) {
@@ -637,21 +660,26 @@ h1.title {
   content: "";
   background: linear-gradient(100deg, var(--gradient));
   position: absolute;
-  /* border-radius: 50%; */
+  border-radius: 50%;
   width: 10rem;
   height: 10rem;
   animation: two 15s ease-in-out infinite;
+  z-index: -3;
+  -webkit-filter: blur(15px);
+  filter: blur(15px);
 }
 
 .pro-card-container::after {
   content: "";
   background: linear-gradient(-100deg, var(--gradientTwo));
   position: absolute;
-  /* border-radius: 50%; */
+  border-radius: 50%;
   width: 10rem;
   height: 10rem;
   z-index: -3;
   animation: one 15s ease-in-out infinite;
+  -webkit-filter: blur(15px);
+  filter: blur(15px);
 }
 
 @keyframes one {
@@ -704,7 +732,6 @@ h1.title {
   border-radius: 2rem;
   padding: 1rem;
   border: 0.5px solid rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.5s ease;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(35px);
   -webkit-backdrop-filter: blur(35px);
@@ -721,10 +748,6 @@ h1.title {
     margin: 0;
     font: 600 18px/2 var(--main-font);
     color: var(--heading-color);
-  }
-
-  &:hover {
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.17);
   }
 
   [data-theme="dark"] & {
@@ -744,6 +767,11 @@ h1.title {
   }
 }
 
+.pro-card-container:hover {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11),
+    0 4px 4px rgba(0, 0, 0, 0.11), 0 8px 8px rgba(0, 0, 0, 0.11),
+    0 16px 16px rgba(0, 0, 0, 0.11), 0 32px 32px rgba(0, 0, 0, 0.11);
+}
 .img-container {
   /* opacity: 0; */
   width: 100%;
@@ -756,9 +784,6 @@ h1.title {
     0px 20px 15px rgba(3, 7, 18, 0.06), 0px 32px 24px rgba(3, 7, 18, 0.08);
 }
 
-/* [data-theme="dark"] .img-container {
-  box-shadow: 0px 0px 10px rgba(28, 28, 34, 0.5);
-} */
 img.card-img {
   width: 100%;
   object-fit: cover;
@@ -1305,12 +1330,14 @@ input::-webkit-inner-spin-button {
 
   .go-to-top {
     transition: color 0.5s ease-in-out;
-    font: 400 90px/1 var(--main-font);
+    font: 400 90px/1.2 "Offbit";
+    vertical-align: middle;
+    color: #494a583a;
     cursor: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPScxLjEnIGlkPSdMYXllcl8xJyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHhtbG5zOnhsaW5rPSdodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rJyB4PScwcHgnIHk9JzBweCcgdmlld0JveD0nMCAwIDU1IDU1JyBzdHlsZT0nZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAzMiAzMjsnIHhtbDpzcGFjZT0ncHJlc2VydmUnPjxnPjxwYXRoIGZpbGw9JyNGRkZGRkYnIGQ9J003LjMsMjQuN2MtMC42LTAuOC0xLjItMi4yLTIuNC00Yy0wLjYtMS0yLjQtMy0zLTMuOGMtMC40LTAuOC0wLjQtMS4yLTAuMi0yYzAuMi0xLjIsMS40LTIuMiwyLjgtMi4yIGMxLDAsMiwwLjgsMi44LDEuNGMwLjQsMC40LDEsMS4yLDEuNCwxLjZjMC40LDAuNCwwLjQsMC42LDAuOCwxYzAuNCwwLjYsMC42LDEsMC40LDAuMmMtMC4yLTEtMC40LTIuNi0wLjgtNC4yIGMtMC4yLTEuMi0wLjQtMS40LTAuNi0yLjJDOC4zLDkuNiw4LjEsOSw3LjksOEM3LjcsNy40LDcuNSw1LjgsNy4zLDVDNy4xLDQsNy4xLDIuMiw3LjksMS40QzguNSwwLjgsOS43LDAuNiwxMC41LDEgYzEsMC42LDEuNiwyLDEuOCwyLjZjMC40LDEsMC44LDIuNCwxLDRjMC40LDIsMSw1LDEsNS42YzAtMC44LTAuMi0yLjIsMC0zYzAuMi0wLjYsMC42LTEuNCwxLjQtMS42YzAuNi0wLjIsMS4yLTAuMiwxLjgtMC4yIGMwLjYsMC4yLDEuMiwwLjYsMS42LDFjMC44LDEuMiwwLjgsMy44LDAuOCwzLjZjMC4yLTAuOCwwLjItMi40LDAuNi0zLjJjMC4yLTAuNCwxLTAuOCwxLjQtMWMwLjYtMC4yLDEuNC0wLjIsMiwwIGMwLjQsMCwxLjIsMC42LDEuNCwxYzAuNCwwLjYsMC42LDIuNiwwLjgsMy40YzAsMC4yLDAuMi0wLjgsMC42LTEuNGMwLjgtMS4yLDMuNi0xLjYsMy44LDEuMmMwLDEuNCwwLDEuMiwwLDIuMmMwLDEsMCwxLjYsMCwyLjQgcy0wLjIsMi42LTAuNCwzLjRjLTAuMiwwLjYtMC44LDItMS40LDIuOGMwLDAtMi4yLDIuNC0yLjQsMy42Yy0wLjIsMS4yLTAuMiwxLjItMC4yLDJzMC4yLDEuOCwwLjIsMS44cy0xLjYsMC4yLTIuNCwwIGMtMC44LTAuMi0xLjgtMS42LTItMi4yYy0wLjQtMC42LTEtMC42LTEuNCwwYy0wLjQsMC44LTEuNCwyLjItMi4yLDIuMmMtMS40LDAuMi00LjIsMC02LjIsMGMwLDAsMC40LTItMC40LTIuOCBjLTAuNi0wLjYtMS42LTEuNi0yLjItMi4yTDcuMywyNC43eicvPjxwYXRoIGQ9J00xNi41LDMxLjljLTAuNywwLTEuNSwwLTIuMywwYy0wLjcsMC0xLjUsMC0yLjEsMGMtMC4yLDAtMC40LTAuMS0wLjYtMC4zYy0wLjEtMC4yLTAuMi0wLjQtMC4yLTAuNiBjMC4xLTAuNiwwLjItMS44LTAuMi0yLjFMOSwyNi43bC0yLjEtMS4zYy0wLjEsMC0wLjEtMC4xLTAuMi0wLjJjLTAuMy0wLjQtMC42LTEtMS0xLjZjLTAuNC0wLjctMC44LTEuNS0xLjUtMi40IGMtMC40LTAuNi0xLjMtMS43LTItMi41Yy0wLjQtMC41LTAuOC0wLjktMS0xLjJjLTAuNi0xLjEtMC42LTEuNy0wLjMtMi42QzEuMiwxMy4zLDIuOCwxMiw0LjUsMTJjMS4yLDAsMi4zLDAuOCwzLjEsMS40IGMwLDAsMC4yLDAuMSwwLjIsMC4yYzAuMiwwLjIsMC41LDAuNSwwLjcsMC44YzAuMSwwLjEsMC4xLDAuMSwwLjIsMC4yYy0wLjEtMC42LTAuMi0xLjEtMC40LTEuN2MtMC4xLTAuNy0wLjItMS4xLTAuNC0xLjQgYy0wLjEtMC4yLTAuMi0wLjUtMC4yLTAuOGMtMC4xLTAuNS0wLjItMC45LTAuMy0xLjNDNy40LDksNy4zLDguNiw3LjIsOC4xQzcsNy44LDYuOSw3LjIsNi44LDYuNUM2LjcsNiw2LjYsNS41LDYuNiw1LjIgQzYuNCw0LjEsNi4zLDIsNy40LDAuOUM4LjIsMCw5LjctMC4yLDEwLjgsMC4zYzEuNCwwLjgsMiwyLjUsMi4yLDNjMC4zLDAuNywwLjgsMi4yLDEsNC4xYzAuMSwwLjQsMC4yLDAuOCwwLjIsMS4yIGMwLjQtMC41LDAuOS0wLjcsMS4yLTAuOGMwLjctMC4yLDEuNC0wLjIsMi0wLjJjMC4xLDAsMC4yLDAsMC4yLDBjMC43LDAuMiwxLjQsMC43LDEuOSwxLjJjMC4xLDAuMSwwLjIsMC4zLDAuMywwLjUgYzAuMy0wLjUsMS0wLjksMS42LTEuMkMyMi4zLDcuOCwyMy4yLDcuOCwyNCw4YzAuOCwwLjEsMS43LDAuOSwxLjksMS40YzAuMiwwLjMsMC4zLDAuOCwwLjUsMS41YzAuNy0wLjcsMS45LTEsMi44LTAuNyBjMS4xLDAuMywxLjksMS4zLDIsMi43bDAsNC42YzAsMC44LTAuMiwyLjctMC40LDMuNmMtMC4yLDAuNi0wLjgsMi4xLTEuNSwzLjFjLTAuOSwxLTIuMSwyLjYtMi4zLDMuM2MtMC4yLDEuMS0wLjIsMS4xLTAuMiwxLjkgQzI2LjgsMzAsMjcsMzEsMjcsMzFjMCwwLjIsMCwwLjQtMC4xLDAuNmMtMC4xLDAuMi0wLjMsMC4zLTAuNSwwLjNjLTAuMiwwLTEuOCwwLjItMi43LDBjLTEuMS0wLjMtMi4xLTEuNy0yLjQtMi41IGMtMC4yLDAuMS0xLjQsMi41LTMsMi41QzE3LjgsMzEuOSwxNy4yLDMxLjksMTYuNSwzMS45eiBNMTIuOSwzMC40YzAuNCwwLDAuOSwwLDEuMywwYzEuNSwwLDMsMC4xLDMuOSwwYzAuNCwwLDEuMi0wLjgsMS42LTEuOCBjMC44LTEuMiwyLTEuMSwyLjctMC4xYzAsMC4xLDAuMSwwLjEsMC4xLDAuMmMwLjIsMC41LDEsMS42LDEuNSwxLjdjMC4zLDAuMSwwLjgsMC4xLDEuMywwLjFjMC0wLjMtMC4xLTAuNy0wLjEtMS4xIGMwLTAuOSwwLTAuOSwwLjItMi4xYzAuMi0xLjMsMi4yLTMuNSwyLjYtNGMwLjUtMC43LDEuMS0yLDEuMi0yLjVjMC4yLTAuNywwLjQtMi40LDAuNC0zLjJWMTNjLTAuMS0wLjctMC4zLTEuMi0wLjgtMS4zIGMtMC42LTAuMi0xLjMsMC4yLTEuNiwwLjVjLTAuMiwwLjMtMC40LDAuOC0wLjQsMWMtMC4yLDAuNS0wLjUsMC44LTAuOSwwLjdjLTAuNC0wLjEtMC42LTAuNC0wLjYtMC44YzAtMC4xLTAuMS0wLjUtMC4yLTAuOSBjLTAuMS0wLjYtMC4zLTEuOC0wLjUtMi4xYy0wLjEtMC4zLTAuNi0wLjYtMC44LTAuN2MtMC4xLDAtMC4xLDAtMC4yLDBjLTAuNC0wLjEtMS4xLTAuMS0xLjUsMGMtMC43LDAuMy0wLjksMC41LTEsMC42IGMtMC4yLDAuNC0wLjMsMS4yLTAuMywxLjhjLTAuMSwwLjUtMC4xLDAuOS0wLjIsMS4yYy0wLjEsMC4zLTAuNCwwLjYtMC43LDAuNmMtMC4zLDAtMC43LTAuMy0wLjgtMC43YzAtMC44LTAuMi0yLjUtMC43LTMuMiBjLTAuMi0wLjItMC43LTAuNS0xLjEtMC43Yy0wLjUsMC0xLDAtMS40LDAuMmMtMC41LDAuMS0wLjgsMC43LTAuOSwxLjFjLTAuMSwwLjQsMCwxLjIsMCwxLjhjMCwwLjMsMCwwLjcsMCwwLjkgYzAsMC40LTAuMywwLjctMC43LDAuN2MtMC40LDAtMC43LTAuMy0wLjctMC43YzAtMC41LTAuNy0zLjgtMS01LjRjLTAuMi0xLjktMC43LTMuMi0xLTMuOWMtMC4yLTAuNi0wLjgtMS44LTEuNS0yLjIgQzkuNywxLjQsOC44LDEuNiw4LjQsMS45QzcuOSwyLjQsNy44LDMuOCw4LDQuOGMwLjEsMC4zLDAuMiwwLjksMC4zLDEuNGMwLjEsMC42LDAuMiwxLjIsMC4zLDEuNWMwLjEsMC42LDAuMiwxLDAuMywxLjQgQzksOS41LDkuMSw5LjksOS4yLDEwLjRjMC4xLDAuMiwwLjEsMC40LDAuMiwwLjZjMC4xLDAuNCwwLjMsMC44LDAuNCwxLjZjMC4zLDEsMC40LDIuMSwwLjYsM2MwLjEsMC40LDAuMSwwLjgsMC4yLDEuMiBjMC4xLDAuNCwwLjMsMS0wLjQsMS4zYy0wLjYsMC4zLTEtMC4zLTEuMi0wLjdsLTAuMi0wLjNjLTAuMi0wLjEtMC4zLTAuMy0wLjQtMC41Yy0wLjEtMC4xLTAuMi0wLjItMC4zLTAuNCBjLTAuMi0wLjItMC41LTAuNS0wLjctMC44Yy0wLjItMC4zLTAuNS0wLjYtMC43LTAuN2MtMC43LTAuNS0xLjYtMS4yLTIuMy0xLjJjLTEsMC0xLjksMC43LTIuMSwxLjZjLTAuMiwwLjctMC4yLDAuOSwwLjEsMS41IGMwLjEsMC4yLDAuNSwwLjYsMC45LDFjMC44LDAuOSwxLjcsMiwyLjEsMi43YzAuNiwwLjksMS4xLDEuOCwxLjUsMi41YzAuMywwLjUsMC41LDEsMC44LDEuM2wyLjEsMS4zbDIuMywyLjMgQzEyLjksMjguNSwxMywyOS42LDEyLjksMzAuNHonLz48cGF0aCBkPSdNMjMuOCwyNi4xYy0wLjQsMC0wLjctMC4zLTAuNy0wLjd2LTYuOGMwLTAuNCwwLjMtMC43LDAuNy0wLjdjMC40LDAsMC43LDAuMywwLjcsMC43djYuOEMyNC42LDI1LjcsMjQuMywyNi4xLDIzLjgsMjYuMXonLz48cGF0aCBkPSdNMTkuOSwyNi4xYy0wLjQsMC0wLjctMC4zLTAuNy0wLjdsLTAuMi02LjhjMC0wLjQsMC4zLTAuOCwwLjctMC44YzAuNCwwLDAuOCwwLjMsMC44LDAuN2wwLjIsNi44IEMyMC42LDI1LjcsMjAuMywyNi4xLDE5LjksMjYuMUMxOS45LDI2LjEsMTkuOSwyNi4xLDE5LjksMjYuMXonLz48cGF0aCBkPSdNMTUuOSwyNi4xYy0wLjQsMC0wLjctMC4zLTAuNy0wLjd2LTYuOGMwLTAuNCwwLjMtMC43LDAuNy0wLjdjMC40LDAsMC43LDAuMywwLjcsMC43djYuOEMxNi42LDI1LjcsMTYuMywyNi4xLDE1LjksMjYuMXonLz48L2c+PC9zdmc+"),
       auto;
 
     &:hover {
-      color: var(--borer-color);
+      color: #3839449a;
     }
   }
 
@@ -1318,8 +1345,13 @@ input::-webkit-inner-spin-button {
     color: var(--heading-color);
     font-weight: 400;
     border-top: 1px solid var(--heading-color);
+    
+    .go-to-top{
+      &:hover{
+        color: #494a58cb;
+      }
+    }
   }
-
 }
 
 .m-0 {
