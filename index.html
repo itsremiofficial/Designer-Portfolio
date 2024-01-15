@@ -8,58 +8,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="images/favicon.svg" type="image/x-icon" />
     <title>XFolio by REMI</title>
+    <link rel="stylesheet" href="locomotive.css">
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="fonts/style.css" /><link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css" />
-    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting-cells.css" />
+    <link rel="stylesheet" href="fonts/style.css" />
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/splitting/dist/splitting.css"
+    />
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/splitting/dist/splitting-cells.css"
+    />
   </head>
   <body>
-    <div class="nav" id="nav">
-      <div class="nav-right">
-        <img class="logo-light" src="images/logo-light.svg" alt="" />
-        <img class="logo-dark" src="images/logo-dark.svg" alt="" />
-        <div class="nav-links">
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#home">About</a></li>
-            <li><a href="#work">Services</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
+    <div id="wrapper">
+      <div id="content-smooth">
+        <div class="cursor"><span>CLICK</span></div>
+        <div class="nav" id="nav">
+          <div class="nav-right">
+            <img class="logo-light" src="images/logo-light.svg" alt="" />
+            <img class="logo-dark" src="images/logo-dark.svg" alt="" />
+            <div class="nav-links">
+              <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#home">About</a></li>
+                <li><a href="#work">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="button-grp">
+            <a href="/" class="nav-btn">Let's Talk</a>
+            <button
+              class="theme-toggle"
+              id="theme-toggle"
+              aria-label="auto"
+              aria-live="polite"
+              type="button"
+            >
+              <svg
+                class="sun-and-moon"
+                aria-hidden="true"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <mask class="moon" id="moon-mask">
+                  <rect x="0" y="0" width="100%" height="100%" fill="white" />
+                  <circle cx="24" cy="10" r="6" fill="black" />
+                </mask>
+                <circle
+                  class="sun"
+                  cx="12"
+                  cy="12"
+                  r="6"
+                  mask="url(#moon-mask)"
+                  fill="currentColor"
+                />
+                <g class="sun-beams" stroke="currentColor">
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </g>
+              </svg>
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="button-grp">
-        <a  href="/"class="nav-btn">Let's Talk</a>
-        <button class="theme-toggle" id="theme-toggle" aria-label="auto" aria-live="polite" >
-          <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" >
-            <mask class="moon" id="moon-mask">
-              <rect x="0" y="0" width="100%" height="100%" fill="white" />
-              <circle cx="24" cy="10" r="6" fill="black" />
-            </mask>
-            <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
-            <g class="sun-beams" stroke="currentColor">
-              <line x1="12" y1="1" x2="12" y2="3" />
-              <line x1="12" y1="21" x2="12" y2="23" />
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-              <line x1="1" y1="12" x2="3" y2="12" />
-              <line x1="21" y1="12" x2="23" y2="12" />
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-            </g>
-          </svg>
-        </button>
-      </div>
-    </div>
-    <div class="container" id="container">
-      <section id="home">
-        <div class="herosection">
-          <div class="hero-content">
-            <h1>
-              <span class="gradient-text">Hello, I'm Remi,</span><br>creative
-              designer<br>based in Pakistan.
+    
+        <div class="container" id="container">
+          <div id="home" class="hero-section">
+            <svg width="0" height="0">
+              <defs>
+                <clipPath id="hero-clip" clipPathUnits="objectBoundingBox">
+                  <path
+                    d="M59.6,-58.4C76.2,-43,87.8,-21.5,88,0.1C88.1,21.7,76.6,43.5,60.1,59.2C43.5,74.9,21.7,84.6,-0.7,85.3C-23.2,86,-46.3,77.8,-61,62C-75.7,46.3,-81.8,23.2,-80.8,1C-79.8,-21.2,-71.7,-42.3,-57,-57.7C-42.3,-73,-21.2,-82.5,0.2,-82.7C21.5,-82.9,43,-73.7,59.6,-58.4Z"
+                    transform="translate(0.5 0.5)"
+                  />
+                </clipPath>
+              </defs>
+            </svg>
+            <div class="hero-img">
+              <img src="images/1.png" alt="" id="hero-img" />
+            </div>
+    
+            <h1 class="title">
+              <span class="gradient-text">Hello, I'm Remi,</span> creative designer
+              based in Pakistan.
             </h1>
-            <p>
+            <p class="paragraph">
               A Product Designer and Visual Developer in India. I specialize in
               UI/UX Design, Responsive Web Design and Visual Development.
             </p>
@@ -68,339 +111,376 @@
               <a href="" class="btn btn-secondary">Veiw all works</a>
             </div>
           </div>
-          <div class="hero-img"><img src="images/1.png" alt="" id="hero-img"/></div>
-        </div>
-      </section>
-
-      <div class="gradient-stripe">
-        <div class="services" id="services">
-          <ul class="services-list">
-            <li><img src="images/list-star.svg" alt="" />Design</li>
-            <li><img src="images/list-star.svg" alt="" />Develop</li>
-            <li><img src="images/list-star.svg" alt="" />Discover</li>
-
-            <li><img src="images/list-star.svg" alt="" />Design</li>
-            <li><img src="images/list-star.svg" alt="" />Develop</li>
-            <li><img src="images/list-star.svg" alt="" />Discover</li>
-
-            <li><img src="images/list-star.svg" alt="" />Design</li>
-            <li><img src="images/list-star.svg" alt="" />Develop</li>
-            <li><img src="images/list-star.svg" alt="" />Discover</li>
-
-            <li><img src="images/list-star.svg" alt="" />Design</li>
-            <li><img src="images/list-star.svg" alt="" />Develop</li>
-            <li><img src="images/list-star.svg" alt="" />Discover</li>
-
-            <li><img src="images/list-star.svg" alt="" />Design</li>
-            <li><img src="images/list-star.svg" alt="" />Develop</li>
-            <li><img src="images/list-star.svg" alt="" />Discover</li>
-
-            <li><img src="images/list-star.svg" alt="" />Design</li>
-            <li><img src="images/list-star.svg" alt="" />Develop</li>
-            <li><img src="images/list-star.svg" alt="" />Discover</li>
-
-            <li><img src="images/list-star.svg" alt="" />Design</li>
-            <li><img src="images/list-star.svg" alt="" />Develop</li>
-            <li><img src="images/list-star.svg" alt="" />Discover</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="container work" id="work">
-        <div class="works">
-          <div class="works-header">
-            <h1>
-              Design that solves <br />
-              <i class="line-title">
-                <svg viewBox="0 0 75 3">
-                  <path d="M0 1.5 L75 1.5" stroke-width="2" fill="none"></path>
-                </svg>
-              </i>
-              problems, one <br />
-              <span class="gradient-text">product at a time</span>
-            </h1>
+    
+          <div class="gradient-stripe">
+            <div class="services" id="services">
+              <ul class="services-list">
+                <li><img src="images/list-star.svg" alt="" />Design</li>
+                <li><img src="images/list-star.svg" alt="" />Develop</li>
+                <li><img src="images/list-star.svg" alt="" />Discover</li>
+    
+                <li><img src="images/list-star.svg" alt="" />Design</li>
+                <li><img src="images/list-star.svg" alt="" />Develop</li>
+                <li><img src="images/list-star.svg" alt="" />Discover</li>
+    
+                <li><img src="images/list-star.svg" alt="" />Design</li>
+                <li><img src="images/list-star.svg" alt="" />Develop</li>
+                <li><img src="images/list-star.svg" alt="" />Discover</li>
+    
+                <li><img src="images/list-star.svg" alt="" />Design</li>
+                <li><img src="images/list-star.svg" alt="" />Develop</li>
+                <li><img src="images/list-star.svg" alt="" />Discover</li>
+    
+                <li><img src="images/list-star.svg" alt="" />Design</li>
+                <li><img src="images/list-star.svg" alt="" />Develop</li>
+                <li><img src="images/list-star.svg" alt="" />Discover</li>
+    
+                <li><img src="images/list-star.svg" alt="" />Design</li>
+                <li><img src="images/list-star.svg" alt="" />Develop</li>
+                <li><img src="images/list-star.svg" alt="" />Discover</li>
+    
+                <li><img src="images/list-star.svg" alt="" />Design</li>
+                <li><img src="images/list-star.svg" alt="" />Develop</li>
+                <li><img src="images/list-star.svg" alt="" />Discover</li>
+              </ul>
+            </div>
           </div>
-          <div class="btn-group">
-            <a href="#" class="btn btn-primary">get in touch</a>
-            <a href="#" class="btn btn-secondary">view all works</a>
-          </div>
-        </div>
-        <div class="work-list">
-          <a href="#" class="work-item">
-            <h1>UI/UX Design</h1>
-            <i id="arrow"></i>
-          </a>
-          <a href="#" class="work-item">
-            <h1>Graphic Design</h1>
-            <i id="arrow"></i>
-          </a>
-          <a href="#" class="work-item">
-            <h1>Web Design</h1>
-            <i id="arrow"></i>
-          </a>
-          <a href="#" class="work-item">
-            <h1>Product Design</h1>
-            <i id="arrow"></i>
-          </a>
-        </div>
-
-        <div class="counter">
-          <div class="counter-item">
-            <h1><span class="gradient-text">12+</span></h1>
-            <p>Years of Experience in Design</p>
-          </div>
-          <div class="line-right"></div>
-          <div class="counter-item">
-            <h1><span class="gradient-text">100+</span></h1>
-            <p>Successfully Projects Completed</p>
-          </div>
-          <div class="line-right"></div>
-          <div class="counter-item">
-            <h1><span class="gradient-text">50+</span></h1>
-            <p>Global Customers</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="container projects" id="projects">
-        <div class="projects-header">
-          <h1>Look at My <span class="gradient-text">Projects</span></h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto,
-            nam. Temporibus earum inventore illo fugiat aperiam autem odio
-            doloremque minima?
-          </p>
-        </div>
-        <div class="project-showcase">
-          <a href="#" class="projects-card">
-            <div class="img-container">
-              <img class="card-img" src="images/projects/1.png" alt="" />
-            </div>
-            <div class="card-body">
-              <h1>Freelance Landing Page</h1>
-              <h6>Landing Page UI Kit</h6>
-            </div>
-          </a>
-          <a href="#" class="projects-card">
-            <div class="img-container">
-              <img class="card-img" src="images/projects/2.png" alt="" />
-            </div>
-            <div class="card-body">
-              <h1>Freelance Landing Page</h1>
-              <h6>Landing Page UI Kit</h6>
-            </div>
-          </a>
-          <a href="#" class="projects-card">
-            <div class="img-container">
-              <img class="card-img" src="images/projects/3.png" alt="" />
-            </div>
-            <div class="card-body">
-              <h1>Freelance Landing Page</h1>
-              <h6>Landing Page UI Kit</h6>
-            </div>
-          </a>
-          <a href="#" class="projects-card">
-            <div class="img-container">
-              <img class="card-img" src="images/projects/4.png" alt="" />
-            </div>
-            <div class="card-body">
-              <h1>Freelance Landing Page</h1>
-              <h6>Landing Page UI Kit</h6>
-            </div>
-          </a>
-        </div>
-        <div class="btn-group pt-3">
-          <a href="" class="btn btn-secondary">Veiw all works</a>
-        </div>
-      </div>
-
-      <div class="container edu-exp" id="experience">
-        <div class="exp-container">
-          <h1><span class="gradient-text">Education</span></h1>
-          <div class="exp-card">
-            <a href="">
-              <h2>Stanford University</h2>
-              <div class="exp-desc">
-                <h6>Frontens Web Developer Degree</h6>
-                <li>2016-2020</li>
+    
+          <div class="container work" id="work">
+            <div class="works">
+              <div class="works-header">
+                <h1>
+                  Design that solves <br />
+                  <i class="line-title">
+                    <svg viewBox="0 0 75 3">
+                      <path d="M0 1.5 L75 1.5" stroke-width="2" fill="none"></path>
+                    </svg>
+                  </i>
+                  problems, one <br />
+                  <span class="gradient-text">product at a time</span>
+                </h1>
               </div>
-            </a>
-          </div>
-          <div class="exp-card">
-            <a href="">
-              <h2>MIT University</h2>
-              <div class="exp-desc">
-                <h6>User Experience Master</h6>
-                <li>2012-2016</li>
+              <div class="btn-group">
+                <a href="#" class="btn btn-primary">get in touch</a>
+                <a href="#" class="btn btn-secondary">view all works</a>
               </div>
-            </a>
-          </div>
-          <div class="exp-card">
-            <a href="">
-              <h2>New York University</h2>
-              <div class="exp-desc">
-                <h6>Web Development Degree</h6>
-                <li>2008-2012</li>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="exp-container">
-          <h1><span class="gradient-text">Experience</span></h1>
-          <div class="exp-card">
-            <a href="">
-              <h2>Twitter Inc.</h2>
-              <div class="exp-desc">
-                <h6>Product Manager</h6>
-                <li>2022</li>
-              </div>
-            </a>
-          </div>
-          <div class="exp-card">
-            <a href="">
-              <h2>Tesla</h2>
-              <div class="exp-desc">
-                <h6>Visual Designer</h6>
-                <li>2018</li>
-              </div>
-            </a>
-          </div>
-          <div class="exp-card">
-            <a href="">
-              <h2>Apple</h2>
-              <div class="exp-desc">
-                <h6>UI Designer</h6>
-                <li>2016</li>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="container contact" id="contact">
-        <div class="contact_headings">
-          <h1><span class="gradient-text">Get in touch</span></h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia
-            corrupti unde quod voluptate accusamus nam quos architecto
-            recusandae asperiores illo?
-          </p>
-          <div class="contact_details">
-            <a class="contact_item" href=""
-              ><i class="icon icon-sms"></i><span>+92 347 721 1767</span></a
-            >
-            <a class="contact_item" href=""
-              ><i class="icon icon-mobile"></i><span>example@email.com</span></a
-            >
-          </div>
-        </div>
-        <div class="contact_form">
-          <form action="">
-            <div class="input-group">
-              <label for="fullname">Full Name</label>
-              <input
-                type="text"
-                id="fullname"
-                placeholder="Enter Your Full Name"
-              />
             </div>
-            <div class="input-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" placeholder="Enter Your Email" />
+            <div class="work-list">
+              <a href="#" class="work-item">
+                <h1>UI/UX Design</h1>
+                <i id="arrow"></i>
+              </a>
+              <a href="#" class="work-item">
+                <h1>Graphic Design</h1>
+                <i id="arrow"></i>
+              </a>
+              <a href="#" class="work-item">
+                <h1>Web Design</h1>
+                <i id="arrow"></i>
+              </a>
+              <a href="#" class="work-item">
+                <h1>Product Design</h1>
+                <i id="arrow"></i>
+              </a>
             </div>
-            <div class="input-group">
-              <label for="budget">Your Budget</label>
-              <input type="number" id="budget" placeholder="1k-3k" />
-            </div>
-            <div class="input-group">
-              <label for="message"
-                >Tell me a bit more what you are looking for?</label
-              >
-
-              <textarea
-                rows="5"
-                type="text"
-                id="message"
-                placeholder="Enter the details"
-              ></textarea>
-            </div>
-
-            <div class="btn-group mt-4">
-              <a class="btn btn-primary" href="#">Send Message</a>
-            </div>
-          </form>
-        </div>
-      </div>
-      
-      <h1 class="content__title" data-splitting data-effect5><span>REMI</span><span>AHMAD</span></h1>
-
-      <div class="container social">
-        <h1 class="title"><span class="gradient-text">Let's Get in Touch</span></h1>
-        <div class="social-inner_container">
-          <div class="social-inner_container_items">
-            <a href="#" class="social-item">
-              <div class="social-item_heading">
-                <h6>Follow On</h6>
-                <h2>Instagram</h2>
+    
+            <div class="counter">
+              <div class="counter-item">
+                <h1><span class="gradient-text">12+</span></h1>
+                <p>Years of Experience in Design</p>
               </div>
-              <i id="arrow"></i>
-            </a>
-            <a href="#" class="social-item">
-              <div class="social-item_heading">
-                <h6>Follow On</h6>
-                <h2>Discord</h2>
+              <div class="line-right"></div>
+              <div class="counter-item">
+                <h1><span class="gradient-text">100+</span></h1>
+                <p>Successfully Projects Completed</p>
               </div>
-              <i id="arrow"></i>
-            </a>
+              <div class="line-right"></div>
+              <div class="counter-item">
+                <h1><span class="gradient-text">50+</span></h1>
+                <p>Global Customers</p>
+              </div>
+            </div>
           </div>
-          <div class="social-inner_container_items">
-            <a href="#" class="social-item">
-              <div class="social-item_heading">
-                <h6>Follow On</h6>
-                <h2>Twitter</h2>
+    
+          <div class="container projects" id="projects">
+            <div class="projects-header">
+              <h1>Look at My <span class="gradient-text">Projects</span></h1>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto,
+                nam. Temporibus earum inventore illo fugiat aperiam autem odio
+                doloremque minima?
+              </p>
+            </div>
+            <div class="project-showcase">
+              <div class="pro-card-container">
+                <a href="#" class="projects-card">
+                  <div class="img-container">
+                    <img class="card-img" src="images/projects/1.png" alt="" />
+                  </div>
+                  <div class="card-body">
+                    <h1>Freelance Landing Page</h1>
+                    <h6>Landing Page UI Kit</h6>
+                  </div>
+                </a>
               </div>
-              <i id="arrow"></i>
-            </a>
-            <a href="#" class="social-item">
-              <div class="social-item_heading">
-                <h6>Follow On</h6>
-                <h2>Github</h2>
+              <div class="pro-card-container">
+                <a href="#" class="projects-card">
+                  <div class="img-container">
+                    <img class="card-img" src="images/projects/1.png" alt="" />
+                  </div>
+                  <div class="card-body">
+                    <h1>Freelance Landing Page</h1>
+                    <h6>Landing Page UI Kit</h6>
+                  </div>
+                </a>
               </div>
-              <i id="arrow"></i>
-            </a>
+              <div class="pro-card-container">
+                <a href="#" class="projects-card">
+                  <div class="img-container">
+                    <img class="card-img" src="images/projects/1.png" alt="" />
+                  </div>
+                  <div class="card-body">
+                    <h1>Freelance Landing Page</h1>
+                    <h6>Landing Page UI Kit</h6>
+                  </div>
+                </a>
+              </div>
+    
+              <div class="pro-card-container">
+                <a href="#" class="projects-card">
+                  <div class="img-container">
+                    <img class="card-img" src="images/projects/2.png" alt="" />
+                  </div>
+                  <div class="card-body">
+                    <h1>Freelance Landing Page</h1>
+                    <h6>Landing Page UI Kit</h6>
+                  </div>
+                </a>
+              </div>
+    
+              <div class="pro-card-container">
+                <a href="#" class="projects-card">
+                  <div class="img-container">
+                    <img class="card-img" src="images/projects/3.png" alt="" />
+                  </div>
+                  <div class="card-body">
+                    <h1>Freelance Landing Page</h1>
+                    <h6>Landing Page UI Kit</h6>
+                  </div>
+                </a>
+              </div>
+              <div class="pro-card-container">
+                <a href="#" class="projects-card">
+                  <div class="img-container">
+                    <img class="card-img" src="images/projects/4.png" alt="" />
+                  </div>
+                  <div class="card-body">
+                    <h1>Freelance Landing Page</h1>
+                    <h6>Landing Page UI Kit</h6>
+                  </div>
+                </a>
+                <div class="two"></div>
+                <div class="three"></div>
+              </div>
+            </div>
+            <div class="btn-group pt-3">
+              <a href="" class="btn btn-secondary">Veiw all works</a>
+            </div>
           </div>
+    
+          <div class="container edu-exp" id="experience">
+            <div class="exp-container">
+              <h1><span class="gradient-text">Education</span></h1>
+              <a href="" class="exp-card">
+                <h2>Stanford University</h2>
+                <div class="exp-desc">
+                  <h6>Frontens Web Developer Degree</h6>
+                  <li>2016-2020</li>
+                </div>
+              </a>
+              <a href="" class="exp-card">
+                <h2>MIT University</h2>
+                <div class="exp-desc">
+                  <h6>User Experience Master</h6>
+                  <li>2012-2016</li>
+                </div>
+              </a>
+              <a href="" class="exp-card">
+                <h2>New York University</h2>
+                <div class="exp-desc">
+                  <h6>Web Development Degree</h6>
+                  <li>2008-2012</li>
+                </div>
+              </a>
+            </div>
+            <div class="exp-container">
+              <h1><span class="gradient-text">Experience</span></h1>
+              <a href="" class="exp-card">
+                <h2>Twitter Inc.</h2>
+                <div class="exp-desc">
+                  <h6>Product Manager</h6>
+                  <li>2022</li>
+                </div>
+              </a>
+              <a href="" class="exp-card">
+                <h2>Tesla</h2>
+                <div class="exp-desc">
+                  <h6>Visual Designer</h6>
+                  <li>2018</li>
+                </div>
+              </a>
+              <a href="" class="exp-card">
+                <h2>Apple</h2>
+                <div class="exp-desc">
+                  <h6>UI Designer</h6>
+                  <li>2016</li>
+                </div>
+              </a>
+            </div>
+          </div>
+    
+          <div class="contact" id="contact">
+            <div class="contact_headings">
+              <h1><span class="gradient-text">Get in touch</span></h1>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia
+                corrupti unde quod voluptate accusamus nam quos architecto
+                recusandae asperiores illo?
+              </p>
+              <div class="contact_details">
+                <a class="contact_item" href=""
+                  ><i class="icon icon-sms"></i><span>+92 347 721 1767</span></a
+                >
+                <a class="contact_item" href=""
+                  ><i class="icon icon-mobile"></i><span>example@email.com</span></a
+                >
+              </div>
+            </div>
+            <div class="contact_form">
+              <form action="">
+                <div class="input-group">
+                  <div class="form__group field">
+                    <input
+                      id="full_name"
+                      required=""
+                      placeholder="Full Name"
+                      class="form__field"
+                      type="text"
+                    />
+                    <label class="form__label" for="full_name">Full Name</label>
+                  </div>
+                  <div class="form__group field">
+                    <input
+                      required=""
+                      placeholder="Name"
+                      class="form__field"
+                      type="email"
+                      id="email"
+                    />
+                    <label class="form__label" for="email">Email</label>
+                  </div>
+                  <div class="form__group field">
+                    <input
+                      required=""
+                      placeholder="Name"
+                      class="form__field"
+                      type="number"
+                      id="budget"
+                    />
+                    <label class="form__label" for="budget">Your Budget</label>
+                  </div>
+                  <div class="form__group field">
+                    <input
+                      required=""
+                      placeholder="Name"
+                      class="form__field"
+                      type="text"
+                      id="message"
+                    />
+                    <label class="form__label" for="message"
+                      >Tell me a bit more what you are looking for?</label
+                    >
+                  </div>
+                </div>
+    
+                <div class="btn-group mt-5">
+                  <a class="btn btn-primary" href="#">Send Message</a>
+                </div>
+              </form>
+            </div>
+          </div>
+    
+          <h1 class="content__title" data-splitting data-effect5>
+            <span>REMI</span><span>AHMAD</span>
+          </h1>
+    
+          <div class="social">
+            <div class="social-inner_container">
+              <div class="social-inner_container_items">
+                <a href="#" class="social-item">
+                  <div class="social-item_heading">
+                    <h6>Follow On</h6>
+                    <h2>Instagram</h2>
+                  </div>
+                  <i id="arrow"></i>
+                </a>
+                <a href="#" class="social-item">
+                  <div class="social-item_heading">
+                    <h6>Hope into</h6>
+                    <h2>Discord</h2>
+                  </div>
+                  <i id="arrow"></i>
+                </a>
+              </div>
+              <div class="social-inner_container_items">
+                <a href="#" class="social-item">
+                  <div class="social-item_heading">
+                    <h6>Follow On</h6>
+                    <h2>Twitter</h2>
+                  </div>
+                  <i id="arrow"></i>
+                </a>
+                <a href="#" class="social-item">
+                  <div class="social-item_heading">
+                    <h6>Follow On</h6>
+                    <h2>Github</h2>
+                  </div>
+                  <i id="arrow"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+        <div class="footer-bottom" id="footer">
+          <h6>Remi @ 2024</h6>
+          <div class="go-to-top">GO TO TOP</div>
+          <h6>All Rights Reserved.</h6>
         </div>
+        </div>
+    
+    
+        <svg
+          style="width: 0; height: 0; position: absolute"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <linearGradient id="svg-gradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="14.06%" stop-color="#b16cea" />
+            <stop offset="44.79%" stop-color="#ff5e69" />
+            <stop offset="71.87%" stop-color="#ff8a56" />
+            <stop offset="100%" stop-color="#ffa84b" />
+          </linearGradient>
+        </svg>
       </div>
     </div>
-
-   
-    <div class="footer-bottom" id="footer">
-      <h6>Remi @ 2024</h6>
-      <h6>All Rights Reserved.</h6>
-    </div>
-
-    <svg
-      style="width: 0; height: 0; position: absolute"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <linearGradient id="svg-gradient" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="14.06%" stop-color="#b16cea" />
-        <stop offset="44.79%" stop-color="#ff5e69" />
-        <stop offset="71.87%" stop-color="#ff8a56" />
-        <stop offset="100%" stop-color="#ffa84b" />
-      </linearGradient>
-    </svg>
   </body>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer" ></script>
   <script src="https://sarathsaleem.github.io/grained/grained.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
   <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js" integrity="sha512-EZI2cBcGPnmR89wTgVnN3602Yyi7muWo8y1B3a8WmIv1J9tYG+udH4LvmYjLiGp37yHB7FfaPBo8ly178m9g4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js" integrity="sha512-OzC82YiH3UmMMs6Ydd9f2i7mS+UFL5f977iIoJ6oy07AJT+ePds9QOEtqXztSH29Nzua59fYS36knmMcv79GOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js" integrity="sha512-EZI2cBcGPnmR89wTgVnN3602Yyi7muWo8y1B3a8WmIv1J9tYG+udH4LvmYjLiGp37yHB7FfaPBo8ly178m9g4Q==" crossorigin="anonymous" referrerpolicy="no-referrer" ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js" integrity="sha512-OzC82YiH3UmMMs6Ydd9f2i7mS+UFL5f977iIoJ6oy07AJT+ePds9QOEtqXztSH29Nzua59fYS36knmMcv79GOg==" crossorigin="anonymous" referrerpolicy="no-referrer" ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollToPlugin.min.js" integrity="sha512-gXXZigEOXAVnGZ2otmK1DqTFK/vF87A+x6Owjf5CN+zVxcg9bLg3F6J1s9yGnFFT08QLt7G0vI3XNWJVue260w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="script.js"></script>
-
+  
 </html>
