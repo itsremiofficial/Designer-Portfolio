@@ -443,7 +443,7 @@ span.gradient-text {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 92%;
+    width: 0%;
     background: transparent;
     padding: 2.2rem 2rem;
     position: relative;
@@ -460,6 +460,7 @@ span.gradient-text {
       font-size: 50px;
       margin: 0 !important;
       color: var(--heading-color);
+      text-wrap: nowrap;
     }
 
     i#arrow {

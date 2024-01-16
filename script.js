@@ -141,12 +141,11 @@ $(document).ready(function () {
   });
   // GSAP for NAME ANIMATION ENDED
 
-
   // GSAP for SMOOTH SCROLLING TO SPECIFIC SECIOTN ANIMATION STARTED
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', function(e) {
+  document.querySelectorAll(".nav-link").forEach((link) => {
+    link.addEventListener("click", function (e) {
       e.preventDefault(); // Prevent default anchor behavior
-      const targetId = this.getAttribute('data-target');
+      const targetId = this.getAttribute("data-target");
       const targetElement = document.querySelector(targetId);
 
       if (targetElement) {
@@ -155,11 +154,21 @@ $(document).ready(function () {
     });
   });
 
-  document.querySelector('.go-to-top').addEventListener('click', function() {
+
+  const goToTop = document.querySelector(".go-to-top");
+  gsap.to(goToTop, {
+    y: -10, // Move up 10 pixels
+    duration: 0.5, // Duration of each bounce
+    ease: "power1.inOut", // Easing function for a smooth effect
+    yoyo: true, // Play the animation back and forth
+    repeat: -1 // Repeat the animation indefinitely
+  });
+  
+  goToTop.addEventListener("click", function () {
     locoScroll.scrollTo(0);
   });
+
   // GSAP for SMOOTH SCROLLING TO SPECIFIC SECIOTN ANIMATION ENDED
-  
 
   // GSAP for STRIPE ANIMATION STARTED
   const servicesList = document.querySelector(".services-list");
@@ -183,7 +192,7 @@ $(document).ready(function () {
   const hoverTimeline = gsap.timeline({
     paused: true,
     repeat: -1,
-    yoyo: true
+    yoyo: true,
   });
   const animationSteps = [
     { borderRadius: "49% 53% 50% 48% / 46% 44% 56% 54%", duration: 1 },
@@ -203,20 +212,17 @@ $(document).ready(function () {
     { borderRadius: "48% 52% 50% 48% / 47% 45% 55% 53%", duration: 1 },
     { borderRadius: "46% 54% 52% 48% / 44% 42% 58% 56%", duration: 1 },
     { borderRadius: "50% 50% 51% 49% / 47% 45% 55% 53%", duration: 1 },
-    { borderRadius: "45% 55% 54% 46% / 48% 50% 50% 52%", duration: 1 }
-    ];
-  
-  
-  
-  animationSteps.forEach(step => {
+    { borderRadius: "45% 55% 54% 46% / 48% 50% 50% 52%", duration: 1 },
+  ];
+
+  animationSteps.forEach((step) => {
     hoverTimeline.to(element, {
       borderRadius: step.borderRadius,
       duration: step.duration,
-      ease: "power1.inOut"
+      ease: "power1.inOut",
     });
   });
-  
-  
+
   element.addEventListener("mouseenter", () => hoverTimeline.play());
   element.addEventListener("mouseleave", () => hoverTimeline.pause());
 
@@ -273,29 +279,24 @@ $(document).ready(function () {
   // CURSOR MOVING ANIMATION FOR LINKS ENDED
 
   // CURSOR MOVING ANIMATION FOR LINKS ENDED
-  const boxes = gsap.utils.toArray('.pro-card-container');
+  const boxes = gsap.utils.toArray(".pro-card-container");
 
   boxes.forEach((box) => {
-    
     gsap.from(box, {
       x: -200,
       y: 200,
-      opacity:0,
-      duration:5,
+      opacity: 0,
+      duration: 5,
       // stagger: .3,
       scrollTrigger: {
         trigger: box,
         start: "top bottom-=15%",
         end: "bottom bottom-=10%",
         scrub: true,
-        markers: true,
+        // markers: true,
       },
     });
   });
-
-
-
-
 
   gsap.to(".nav", {
     scrollTrigger: {
@@ -303,12 +304,101 @@ $(document).ready(function () {
       start: "top+=50 top",
       end: "bottom top",
       toggleClass: { className: "nav-small", targets: ".nav" },
-      scrub: true
+      scrub: true,
     },
     height: "50px",
-    padding: '0.2rem 5rem',
-    ease: "none"
+    padding: "0.2rem 5rem",
+    ease: "none",
   });
+
+
   
+  // TEXT REVEAL SCROLL ANIMATION STARTED
+  const textReveal = document.querySelectorAll(".another-text");
+  textReveal.forEach((textWord) => {
+    const words = textWord.querySelectorAll(".word");
+    
+    const theme = document.body.getAttribute('data-theme');
+    const bg = theme === 'light' ? '#000' : '#373843';
+    const fg = theme === 'light' ? '#fff' : '#8c8ea4';
+
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: words[0],
+        start: "top top+=50%",
+        end: "top top+=10%",
+        scrub: true,
+        // markers: true,
+        toggleActions: "play play reverse reverse",
+      },
+    });
+
+    words.forEach((word) => {
+      gsap.set(word, { perspective: 1000 });
+
+      const chars = word.querySelectorAll(".char");
+      timeline.fromTo(
+        chars,
+        { color: bg },
+        {
+          color: fg,
+          duration: 0.3,
+          stagger: 0.02,
+          ease: "power1.inOut",
+        },
+        "+=0"
+      );
+    });
+  });
+  // TEXT REVEAL SCROLL ANIMATION ENDED
   
+
+  // WORK SCROLL ANIMATION STARTED
+  gsap.utils.toArray(".work-item").forEach((item) => {
+    gsap.fromTo(
+      item,
+      { width: "0%", opacity: 0 },
+      {
+        width: "92%",
+        opacity: 1,
+        duration: 2,
+        ease: "power1.inOut",
+        scrollTrigger: {
+          trigger: item,
+          start: "top bottom-=20%",
+          end: "bottom top-=20%",
+          toggleActions: "play none none reverse",
+          // markers: true,
+        },
+      }
+    );
+  });
+  // WORK SCROLL ANIMATION ENDED
+
+
+  // COUNTER SCROLL ANIMATION STARTED
+  document.querySelectorAll(".counter-number").forEach((counter) => {
+    const endValue = parseInt(counter.textContent, 10);
+    
+    const obj = { val: 0 };
+
+    gsap.to(obj, {
+      val: endValue,
+      ease: "none",
+      snap: { val: 1 },
+      scrollTrigger: {
+        trigger: counter,
+        start: "top-=50px top+=85%",
+        end: "bottom top+=35%",
+        scrub: true,
+        // markers: true,
+      },
+      onUpdate: function () {
+        counter.textContent = Math.ceil(obj.val) + "+";
+      },
+    });
+  });
+  // COUNTER SCROLL ANIMATION ENDED
+
+
 });
