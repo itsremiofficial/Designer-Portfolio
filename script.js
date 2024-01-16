@@ -156,13 +156,13 @@ $(document).ready(function () {
 
 
   const goToTop = document.querySelector(".go-to-top");
-  gsap.to(goToTop, {
-    y: -10, // Move up 10 pixels
-    duration: 0.5, // Duration of each bounce
-    ease: "power1.inOut", // Easing function for a smooth effect
-    yoyo: true, // Play the animation back and forth
-    repeat: -1 // Repeat the animation indefinitely
-  });
+  // gsap.from(goToTop, {
+  //   y: -10, 
+  //   duration: 1,
+  //   ease: "expoScale(0.5,7,none)",
+  //   yoyo: true,
+  //   repeat: -1 
+  // });
   
   goToTop.addEventListener("click", function () {
     locoScroll.scrollTo(0);
