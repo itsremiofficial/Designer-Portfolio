@@ -402,6 +402,7 @@ $(document).ready(function () {
   });
   // COUNTER SCROLL ANIMATION ENDED
 
+
   const selectors = [".exp-card", ".edu-card"];
   selectors.forEach((selector) => {
     document.querySelectorAll(selector).forEach((eachItem) => {
@@ -413,7 +414,6 @@ $(document).ready(function () {
           start: "top bottom-=10%",
           end: "bottom bottom-=25%",
           scrub: true,
-          markers: true,
         },
       });
     });
@@ -439,6 +439,4 @@ $(document).ready(function () {
     );
   });
   // EXPERIENCE BOTTOM BORDER ANIMATION ENDED
-
-  
 });

@@ -1,26 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="images/favicon.svg" type="image/x-icon" />
     <title>XFolio by REMI</title>
-    <link rel="stylesheet" href="locomotive.css">
+    <link rel="stylesheet" href="locomotive.css" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="fonts/style.css" />
     <link
-    rel="stylesheet"
-    href="https://unpkg.com/splitting/dist/splitting.css"
+      rel="stylesheet"
+      href="https://unpkg.com/splitting/dist/splitting.css"
     />
     <link
-    rel="stylesheet"
-    href="https://unpkg.com/splitting/dist/splitting-cells.css"
+      rel="stylesheet"
+      href="https://unpkg.com/splitting/dist/splitting-cells.css"
     />
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const body = document.body;
+        const paceIconFill = document.querySelector(".icon-fill");
+        const heroImage = document.querySelector(".hero-img");
+
+        // Disable scrolling
+        body.classList.add("no-scroll");
+
+        function updateProgress(percentage) {
+          // Gradually reveal the fill from left to right
+          paceIconFill.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+        }
+
+        // Simulate loading progress
+        let progress = 0;
+        const interval = setInterval(() => {
+          progress += 5;
+          updateProgress(progress);
+          if (progress >= 100) {
+            clearInterval(interval);
+            // Wait a bit before hiding the loader and enabling scrolling
+            setTimeout(() => {
+              document.querySelector(".pace").style.display = "none";
+              body.classList.remove("no-scroll");
+              heroImage.classList.add("scale-to-normal");
+            }, 100);
+
+            const timel = gsap.timeline();
+            const onload = [".toFade"];
+            onload.forEach((selector) => {
+              document.querySelectorAll(selector).forEach((eachItem) => {
+                timel.fromTo(
+                  eachItem,
+                  { opacity: 0, x: -100, delay: 0.5 },
+                  {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1,
+                    ease: "power2.out",
+                    delay: 0.5,
+                  }
+                );
+              });
+            });
+
+            timel.fromTo(".paragraph .char", 
+            { opacity: 0, x: -10 },
+            { opacity: 1, x: 0, stagger: 0.02, ease: "power1.out", duration: 0.1 }
+          );
+          }
+        }, 100);
+      });
+    </script>
   </head>
   <body>
+    <div class="pace">
+      <svg
+        id="loading-icon"
+        viewBox="0 0 910 284"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <!-- Outline Icon -->
+        <use xlink:href="#icon-outline" class="icon-outline"></use>
+        <!-- Filled Icon -->
+        <use xlink:href="#icon-fill" class="icon-fill"></use>
+      </svg>
+    </div>
+
+    <!-- Define SVG Icons -->
+    <svg style="display: none">
+      <symbol id="icon-outline" viewBox="0 0 910 284">
+        <path
+          class="st0"
+          d="M841,252.9c-3.8,3.6-8.4,5.4-13.8,5.4c-5.1,0-9.6-1.8-13.4-5.4c-3.8-3.8-5.8-8.4-5.8-13.8s2-10,5.8-13.8
+        c3.8-3.8,8.3-5.8,13.4-5.8c5.4,0,10,2,13.8,5.8c3.8,3.8,5.8,8.4,5.8,13.8S844.8,249.1,841,252.9z M784.5,253.6
+        c0,4.1,1.8,8.2,5.4,12.2c3.6,3.8,8.8,5.8,15.8,5.8h-93.3c7,0,12.1-2,15.8-5.8c3.8-4.1,5.8-8.2,5.8-12.2V110.1c0-4.3-2-8.4-5.8-12.2
+        c-3.6-4.1-8.8-6.2-15.8-6.2c9.2,0,19.3-1.4,30.3-4.2c11-3,20.8-7.4,29.2-13c8.4-5.9,12.6-12.1,12.6-18.8L784.5,253.6L784.5,253.6z
+         M776.8,46.4c-4.9,4.9-10.9,7.2-18,7.2s-12.8-2.5-17.6-7.2c-4.9-5.1-7.2-11.2-7.2-18s2.5-12.8,7.2-17.6c4.9-5.1,10.8-7.6,17.6-7.6
+        s13.2,2.5,18,7.6c5.1,4.9,7.6,10.8,7.6,17.6S781.9,41.3,776.8,46.4z M407.8,110.1c0-4.3-1.8-8.4-5.4-12.2c-3.6-4.1-8.8-6.2-15.8-6.2
+        c9.2,0,19.3-1.4,30.4-4.2c11-3,20.6-7.4,28.8-13c8.4-5.9,12.6-12.1,12.6-18.8v65.6l-2.4,3.4c-13.3,18.2-29.5,37.5-48.4,58
+        L407.8,110.1L407.8,110.1L407.8,110.1z M458.6,253.6c0,4.1,1.8,8.2,5.4,12.2c3.8,3.8,9.2,5.8,16.1,5.8h-93.3c7,0,12.1-2,15.8-5.8
+        c3.6-4.1,5.4-8.2,5.4-12.2v-44.6c6.4-8.2,15.9-20.9,28.4-38.4c9.5-13,16.8-23.2,22.2-30.4L458.6,253.6L458.6,253.6z M648.9,253.6
+        c0,4.1-1.8,8.2-5.4,12.2c-3.6,3.8-8.9,5.8-16.2,5.8h93.6c-7.2,0-12.5-2-16.2-5.8c-3.6-4.1-5.4-8.2-5.4-12.2V122.8
+        c0-7.2-0.9-14.3-2.6-21.5c-1.8-7.2-4.5-13.6-8-19.2c-3.6-5.6-7.9-10.4-13-14.2c-4.9-3.8-10.8-5.8-17.6-5.8c-6.7-0.3-13.9,1.4-21.8,5
+        c-7.6,3.3-16.3,9.9-26.1,19.6c-9.7,9.5-19.7,21.6-30,36.4v-0.4c0-7.4-0.9-14.6-2.6-21.5c-1.8-7.2-4.6-13.6-8.4-19.2
+        c-3.6-5.9-7.9-10.8-13-14.6c-4.9-3.8-10.9-5.6-18-5.4c-7,0-14.3,2-22.2,5.8c-7.9,3.6-16.8,10.4-26.8,20.4c-9.7,10-19.9,22.6-30.4,38
+        l-3.4,4.6c-2.1,2.8-5.3,6.8-9.6,11.9c-4.1,5.1-8.9,11-14.6,17.6c-5.4,6.7-11.4,13.7-18,21.1c-6.7,7.4-13.7,14.9-21.1,22.2
+        c-7.1,7.1-14.7,14.1-22.6,20.8c-7.6,6.7-15.4,12.5-23,17.6c-7.4,5.1-15,9.2-22.6,12.2c-7.4,2.8-14.2,4.2-20.4,4.2
+        c-15.1-1.3-27.5-10-37.2-26.1c-10-16-14.8-36.6-14.8-62h118.2c0-30.7-8.4-56.8-25.4-78.3c-16.8-21.5-37.2-32.2-61-32.2
+        s-44.1,10.9-61,32.6c-16.6,21.5-25,47.5-25,77.9c0,20,3.8,38.5,11.6,55.6c7.6,16.8,18,30.4,31.1,40.3c13.3,9.7,27.8,14.6,43.4,14.6
+        c10.3,0,20-1.3,29.2-3.8c9.5-2.4,17.9-5.1,25.4-8.4c7.6-3.6,15.4-8.4,23-14.6c7.9-6.4,14.7-12.5,20.4-18.4
+        c5.9-5.9,12.5-13.3,20-22.2c7.4-9.2,13.6-17.2,18.4-24.2c5.1-6.9,11.5-15.8,19.2-26.4c7.9-11,14.6-20,20-26.8
+        c6.7-9.5,12.9-17.9,18.8-25.4c34.8-44,52.2-47.2,52.2-9.6v152.7c0,4.1-2,8.2-5.8,12.2c-3.6,3.8-8.8,5.8-15.8,5.8h93.3
+        c-7,0-12.1-2-15.8-5.8c-3.6-4.1-5.4-8.2-5.4-12.2v-121l16.2-21.8c35-44.6,52.6-47.9,52.6-10v152.7L648.9,253.6L648.9,253.6z
+         M261.7,95.6c6.2-17.9,13.3-26.8,21.5-26.8s15.6,8.9,21.5,26.8c6.2,17.9,9.6,39.8,10.4,65.6h-63.3
+        C252.2,135.3,255.5,113.5,261.7,95.6L261.7,95.6z M192.4,118c4.6-12.2,10.9-23.6,18.9-33.9c4.6-6,9.5-11.3,14.7-15.8
+        c-4.5-4.5-9.2-7.2-14.3-8c-5.3-0.8-11.6,0.7-18.9,4.4c-7.3,3.7-15.7,11-25.2,21.8c-9.5,10.8-20.1,25.2-32,43.1V55.6
+        c0,6.7-4.2,12.9-12.7,18.7c-8.5,5.8-18.2,10.1-29.3,13.1c-11,2.9-21.2,4.4-30.4,4.4c6.9,0,12.2,2,16,6c3.7,4,5.6,8.2,5.6,12.5v144
+        c0,4.1-1.9,8.2-5.6,12.1c-3.7,4-9.1,6-16,6h93.6c-6.9,0-12.2-2-15.8-6c-3.6-4-5.4-8-5.4-12.1V139.2
+        C159.2,111.6,178.2,104.5,192.4,118L192.4,118z"
+        />
+      </symbol>
+      <symbol id="icon-fill" viewBox="0 0 910 284">
+        <path
+          class="cls-1"
+          d="m840.97,252.87c-3.82,3.62-8.42,5.38-13.8,5.38-5.09,0-9.59-1.76-13.41-5.38-3.82-3.82-5.78-8.42-5.78-13.8s1.96-9.99,5.78-13.8c3.82-3.82,8.32-5.78,13.41-5.78,5.38,0,9.99,1.96,13.8,5.78,3.82,3.82,5.78,8.42,5.78,13.8s-1.96,9.99-5.78,13.8Zm-56.49.78c0,4.11,1.76,8.22,5.38,12.24,3.62,3.82,8.81,5.78,15.76,5.78h-93.3c6.95,0,12.14-1.96,15.76-5.78,3.82-4.11,5.78-8.22,5.78-12.24V110.13c0-4.31-1.96-8.42-5.78-12.24-3.62-4.11-8.81-6.17-15.76-6.17,9.2,0,19.29-1.37,30.35-4.21,10.97-3.03,20.76-7.44,29.17-13.02,8.42-5.87,12.63-12.14,12.63-18.8v197.96Zm-7.64-207.26c-4.9,4.9-10.87,7.24-18.01,7.24s-12.83-2.45-17.62-7.24c-4.9-5.09-7.24-11.16-7.24-18.01s2.45-12.83,7.24-17.62c4.9-5.09,10.77-7.64,17.62-7.64s13.22,2.55,18.01,7.64c5.09,4.9,7.64,10.77,7.64,17.62s-2.55,12.92-7.64,18.01Zm-368.99,63.73c0-4.31-1.76-8.42-5.38-12.24-3.62-4.11-8.81-6.17-15.76-6.17,9.2,0,19.29-1.37,30.35-4.21,10.97-3.03,20.56-7.44,28.78-13.02,8.42-5.87,12.63-12.14,12.63-18.8v65.59l-2.35,3.43c-13.31,18.21-29.47,37.5-48.36,57.96v-72.55h.1Zm50.71,143.52c0,4.11,1.76,8.22,5.38,12.24,3.82,3.82,9.2,5.78,16.15,5.78h-93.3c6.95,0,12.14-1.96,15.76-5.78,3.62-4.11,5.38-8.22,5.38-12.24v-44.55c6.36-8.22,15.86-20.95,28.39-38.38,9.5-13.02,16.84-23.2,22.22-30.35v113.27Zm190.32,0c0,4.11-1.76,8.22-5.38,12.24-3.62,3.82-8.91,5.78-16.15,5.78h93.59c-7.15,0-12.53-1.96-16.15-5.78-3.62-4.11-5.38-8.22-5.38-12.24V122.76c0-7.15-.88-14.29-2.64-21.54-1.76-7.15-4.5-13.61-8.03-19.19-3.62-5.58-7.93-10.38-13.02-14.2-4.9-3.82-10.77-5.78-17.62-5.78-6.66-.29-13.9,1.37-21.83,4.99-7.64,3.33-16.35,9.89-26.14,19.58-9.69,9.5-19.68,21.64-29.96,36.42v-.39c0-7.44-.88-14.59-2.64-21.54-1.76-7.15-4.6-13.61-8.42-19.19-3.62-5.87-7.93-10.77-13.02-14.59-4.9-3.82-10.87-5.58-18.01-5.38-6.95,0-14.29,1.96-22.22,5.78-7.93,3.62-16.84,10.38-26.83,20.36-9.69,9.99-19.87,22.62-30.35,37.99l-3.43,4.6c-2.06,2.84-5.29,6.76-9.59,11.94-4.11,5.09-8.91,10.97-14.59,17.62-5.38,6.66-11.36,13.71-18.01,21.15-6.66,7.44-13.71,14.88-21.15,22.22-7.15,7.15-14.69,14.1-22.62,20.76-7.64,6.66-15.37,12.53-23.01,17.62-7.44,5.09-14.98,9.2-22.62,12.24-7.44,2.84-14.2,4.21-20.36,4.21-15.08-1.27-27.51-9.99-37.2-26.14-9.99-15.96-14.78-36.62-14.78-61.97h118.17c0-30.74-8.42-56.78-25.36-78.32-16.84-21.54-37.2-32.21-60.99-32.21s-44.15,10.87-60.99,32.6c-16.64,21.54-24.97,47.48-24.97,77.93,0,19.97,3.82,38.48,11.55,55.61,7.64,16.84,18.01,30.35,31.13,40.34,13.31,9.69,27.8,14.59,43.37,14.59,10.28,0,19.97-1.27,29.17-3.82,9.5-2.35,17.92-5.09,25.36-8.42,7.64-3.62,15.37-8.42,23.01-14.59,7.93-6.36,14.69-12.53,20.36-18.41,5.87-5.87,12.53-13.31,19.97-22.22,7.44-9.2,13.61-17.23,18.41-24.18,5.09-6.95,11.55-15.76,19.19-26.43,7.93-10.97,14.59-19.97,19.97-26.83,6.66-9.5,12.92-17.92,18.8-25.36,34.76-43.96,52.18-47.19,52.18-9.59v152.73c0,4.11-1.96,8.22-5.78,12.24-3.62,3.82-8.81,5.78-15.76,5.78h93.3c-6.95,0-12.14-1.96-15.76-5.78-3.62-4.11-5.38-8.22-5.38-12.24v-121.01l16.15-21.83c35.05-44.55,52.57-47.87,52.57-9.99v152.73h-.1ZM261.68,95.55c6.17-17.92,13.31-26.83,21.54-26.83s15.57,8.91,21.54,26.83c6.17,17.92,9.59,39.75,10.38,65.59h-63.34c.39-25.85,3.72-47.68,9.89-65.59Zm-69.26,22.42c4.56-12.24,10.85-23.57,18.86-33.94,4.64-5.98,9.54-11.26,14.69-15.83-4.47-4.54-9.24-7.21-14.3-7.95-5.26-.77-11.55.71-18.87,4.43-7.32,3.72-15.73,10.97-25.22,21.75-9.5,10.78-20.15,25.16-31.96,43.12V55.63c0,6.68-4.24,12.9-12.71,18.67-8.47,5.78-18.23,10.14-29.26,13.09-11.04,2.95-21.18,4.43-30.42,4.43,6.93,0,12.25,1.99,15.98,5.97,3.72,3.98,5.58,8.15,5.58,12.51v144c0,4.11-1.86,8.15-5.58,12.13-3.72,3.98-9.05,5.97-15.98,5.97h93.56c-6.93,0-12.19-1.99-15.79-5.97-3.6-3.98-5.39-8.02-5.39-12.13v-115.12c23.64-27.57,42.56-34.64,56.79-21.22Z"
+        />
+      </symbol>
+    </svg>
+
     <div class="cursor"><span>CLICK</span></div>
     <div class="nav" id="nav">
       <div class="nav-right">
@@ -28,11 +140,27 @@
         <img class="logo-dark" src="images/logo-dark.svg" alt="" />
         <div class="nav-links">
           <ul>
-            <li><a class="nav-link" data-target="#home" href="#home">About</a></li>
-            <li><a class="nav-link" data-target="#work" href="#work">Services</a></li>
-            <li><a class="nav-link" data-target="#projects" href="#projects">Projects</a></li>
-            <li><a class="nav-link" data-target="#experience" href="#experience">Experience</a></li>
-            <li><a class="nav-link" data-target="#contact" href="#contact">Contact</a></li>
+            <li>
+              <a class="nav-link" data-target="#home" href="#home">About</a>
+            </li>
+            <li>
+              <a class="nav-link" data-target="#work" href="#work">Services</a>
+            </li>
+            <li>
+              <a class="nav-link" data-target="#projects" href="#projects"
+                >Projects</a
+              >
+            </li>
+            <li>
+              <a class="nav-link" data-target="#experience" href="#experience"
+                >Experience</a
+              >
+            </li>
+            <li>
+              <a class="nav-link" data-target="#contact" href="#contact"
+                >Contact</a
+              >
+            </li>
           </ul>
         </div>
       </div>
@@ -79,479 +207,495 @@
       </div>
     </div>
     <div id="wrapper">
-        <div class="container" id="container">
-          <div id="home" class="hero-section">
-            <svg width="0" height="0">
-              <defs>
-                <clipPath id="hero-clip" clipPathUnits="objectBoundingBox">
-                  <path
-                    d="M59.6,-58.4C76.2,-43,87.8,-21.5,88,0.1C88.1,21.7,76.6,43.5,60.1,59.2C43.5,74.9,21.7,84.6,-0.7,85.3C-23.2,86,-46.3,77.8,-61,62C-75.7,46.3,-81.8,23.2,-80.8,1C-79.8,-21.2,-71.7,-42.3,-57,-57.7C-42.3,-73,-21.2,-82.5,0.2,-82.7C21.5,-82.9,43,-73.7,59.6,-58.4Z"
-                    transform="translate(0.5 0.5)"
-                  />
-                </clipPath>
-              </defs>
-            </svg>
-            <div class="hero-img">
-              <img src="images/1.png" alt="" id="hero-img" />
-            </div>
-    
-            <h1 class="title">
-              <span class="gradient-text">Hello, I'm Remi,</span> <span class="another-text" data-splitting>creative designer based in Pakistan.</span>
-            </h1>
-            <p class="paragraph another-text" data-splitting>
-              A Product Designer and Visual Developer in India. I specialize in
-              UI/UX Design, Responsive Web Design and Visual Development.
-            </p>
-            <div class="btn-group">
-              <a href="" class="btn btn-primary">Get in touch</a>
-              <a href="" class="btn btn-secondary">Veiw all works</a>
-            </div>
+      <div class="container" id="container">
+        <div id="home" class="hero-section">
+          <div class="hero-img">
+            <img src="images/1.png" alt="" id="hero-img" />
           </div>
-    
-          <div class="gradient-stripe">
-            <div class="services" id="services">
-              <ul class="services-list">
-                <li><img src="images/list-star.svg" alt="" />Design</li>
-                <li><img src="images/list-star.svg" alt="" />Develop</li>
-                <li><img src="images/list-star.svg" alt="" />Discover</li>
-    
-                <li><img src="images/list-star.svg" alt="" />Design</li>
-                <li><img src="images/list-star.svg" alt="" />Develop</li>
-                <li><img src="images/list-star.svg" alt="" />Discover</li>
-    
-                <li><img src="images/list-star.svg" alt="" />Design</li>
-                <li><img src="images/list-star.svg" alt="" />Develop</li>
-                <li><img src="images/list-star.svg" alt="" />Discover</li>
-    
-                <li><img src="images/list-star.svg" alt="" />Design</li>
-                <li><img src="images/list-star.svg" alt="" />Develop</li>
-                <li><img src="images/list-star.svg" alt="" />Discover</li>
-    
-                <li><img src="images/list-star.svg" alt="" />Design</li>
-                <li><img src="images/list-star.svg" alt="" />Develop</li>
-                <li><img src="images/list-star.svg" alt="" />Discover</li>
-    
-                <li><img src="images/list-star.svg" alt="" />Design</li>
-                <li><img src="images/list-star.svg" alt="" />Develop</li>
-                <li><img src="images/list-star.svg" alt="" />Discover</li>
-    
-                <li><img src="images/list-star.svg" alt="" />Design</li>
-                <li><img src="images/list-star.svg" alt="" />Develop</li>
-                <li><img src="images/list-star.svg" alt="" />Discover</li>
-              </ul>
-            </div>
+
+          <h1 class="title toFade">
+            <span class="gradient-text">Hello, I'm Remi,</span>
+            <span class="another-text" data-splitting
+              >creative designer based in Pakistan.</span
+            >
+          </h1>
+          <p class="paragraph another-text" data-splitting>
+            A Product Designer and Visual Developer in India. I specialize in
+            UI/UX Design, Responsive Web Design and Visual Development.
+          </p>
+          <div class="btn-group">
+            <a href="" class="btn btn-primary">Get in touch</a>
+            <a href="" class="btn btn-secondary">Veiw all works</a>
           </div>
-    
-          <div class="work" id="work">
-            <div class="works">
-              <div class="works-header">
-                <h1>
-                  <span class="another-text" data-splitting>Design that solves <br />
+        </div>
+
+        <div class="gradient-stripe">
+          <div class="services" id="services">
+            <ul class="services-list">
+              <li><img src="images/list-star.svg" alt="" />Design</li>
+              <li><img src="images/list-star.svg" alt="" />Develop</li>
+              <li><img src="images/list-star.svg" alt="" />Discover</li>
+
+              <li><img src="images/list-star.svg" alt="" />Design</li>
+              <li><img src="images/list-star.svg" alt="" />Develop</li>
+              <li><img src="images/list-star.svg" alt="" />Discover</li>
+
+              <li><img src="images/list-star.svg" alt="" />Design</li>
+              <li><img src="images/list-star.svg" alt="" />Develop</li>
+              <li><img src="images/list-star.svg" alt="" />Discover</li>
+
+              <li><img src="images/list-star.svg" alt="" />Design</li>
+              <li><img src="images/list-star.svg" alt="" />Develop</li>
+              <li><img src="images/list-star.svg" alt="" />Discover</li>
+
+              <li><img src="images/list-star.svg" alt="" />Design</li>
+              <li><img src="images/list-star.svg" alt="" />Develop</li>
+              <li><img src="images/list-star.svg" alt="" />Discover</li>
+
+              <li><img src="images/list-star.svg" alt="" />Design</li>
+              <li><img src="images/list-star.svg" alt="" />Develop</li>
+              <li><img src="images/list-star.svg" alt="" />Discover</li>
+
+              <li><img src="images/list-star.svg" alt="" />Design</li>
+              <li><img src="images/list-star.svg" alt="" />Develop</li>
+              <li><img src="images/list-star.svg" alt="" />Discover</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="work" id="work">
+          <div class="works">
+            <div class="works-header">
+              <h1>
+                <span class="another-text" data-splitting
+                  >Design that solves <br />
                   <i class="line-title">
                     <svg viewBox="0 0 75 3">
-                      <path d="M0 1.5 L75 1.5" stroke-width="2" fill="none"></path>
+                      <path
+                        d="M0 1.5 L75 1.5"
+                        stroke-width="2"
+                        fill="none"
+                      ></path>
                     </svg>
-                  </i> problems, one</span> <br />
-                  <span class="gradient-text">product at a time</span>
-                </h1>
-              </div>
-              <div class="btn-group">
-                <a href="#" class="btn btn-primary">get in touch</a>
-                <a href="#" class="btn btn-secondary">view all works</a>
-              </div>
-            </div>
-            <div class="work-list">
-              <a href="#" class="work-item">
-                <h1>UI/UX Design</h1>
-                <i id="arrow"></i>
-              </a>
-              <a href="#" class="work-item">
-                <h1>Graphic Design</h1>
-                <i id="arrow"></i>
-              </a>
-              <a href="#" class="work-item">
-                <h1>Web Design</h1>
-                <i id="arrow"></i>
-              </a>
-              <a href="#" class="work-item">
-                <h1>Product Design</h1>
-                <i id="arrow"></i>
-              </a>
-            </div>
-    
-            <div class="counter">
-              <div class="counter-item">
-                <h1><span class="gradient-text counter-number">5+</span></h1>
-                <p>Years of Experience in Design</p>
-              </div>
-              <div class="line-right"></div>
-              <div class="counter-item">
-                <h1><span class="gradient-text counter-number">250+</span></h1>
-                <p>Successfully Projects Completed</p>
-              </div>
-              <div class="line-right"></div>
-              <div class="counter-item">
-                <h1><span class="gradient-text counter-number">75+</span></h1>
-                <p>Global Customers</p>
-              </div>
-            </div>
-          </div>
-    
-          <div class="projects" id="projects">
-            <div class="projects-header">
-              <h1><span class="another-text" data-splitting>Look at My</span> <span class="gradient-text">Projects</span></h1>
-              <p class="another-text" data-splitting>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto,
-                nam. Temporibus earum inventore illo fugiat aperiam autem odio
-                doloremque minima?
-              </p>
-            </div>
-            <div class="project-showcase">
-
-              <div class="pro-card-container">
-                <a href="#" class="projects-card">
-                  <div class="img-container">
-                    <img class="card-img" src="images/projects/1.png" alt="" />
-                  </div>
-                  <div class="card-body">
-                    <h1>Freelance Landing Page</h1>
-                    <h6>Landing Page UI Kit</h6>
-                  </div>
-                </a>
-              </div>
-              <div class="pro-card-container">
-                <a href="#" class="projects-card">
-                  <div class="img-container">
-                    <img class="card-img" src="images/projects/1.png" alt="" />
-                  </div>
-                  <div class="card-body">
-                    <h1>Freelance Landing Page</h1>
-                    <h6>Landing Page UI Kit</h6>
-                  </div>
-                </a>
-              </div>
-              <div class="pro-card-container">
-                <a href="#" class="projects-card">
-                  <div class="img-container">
-                    <img class="card-img" src="images/projects/1.png" alt="" />
-                  </div>
-                  <div class="card-body">
-                    <h1>Freelance Landing Page</h1>
-                    <h6>Landing Page UI Kit</h6>
-                  </div>
-                </a>
-              </div>
-    
-              <div class="pro-card-container">
-                <a href="#" class="projects-card">
-                  <div class="img-container">
-                    <img class="card-img" src="images/projects/2.png" alt="" />
-                  </div>
-                  <div class="card-body">
-                    <h1>Freelance Landing Page</h1>
-                    <h6>Landing Page UI Kit</h6>
-                  </div>
-                </a>
-              </div>
-              <div class="pro-card-container">
-                <a href="#" class="projects-card">
-                  <div class="img-container">
-                    <img class="card-img" src="images/projects/3.png" alt="" />
-                  </div>
-                  <div class="card-body">
-                    <h1>Freelance Landing Page</h1>
-                    <h6>Landing Page UI Kit</h6>
-                  </div>
-                </a>
-              </div>
-              <div class="pro-card-container">
-                <a href="#" class="projects-card">
-                  <div class="img-container">
-                    <img class="card-img" src="images/projects/4.png" alt="" />
-                  </div>
-                  <div class="card-body">
-                    <h1>Freelance Landing Page</h1>
-                    <h6>Landing Page UI Kit</h6>
-                  </div>
-                </a>
-                <div class="two"></div>
-                <div class="three"></div>
-              </div>
-    
-              <div class="pro-card-container">
-                <a href="#" class="projects-card">
-                  <div class="img-container">
-                    <img class="card-img" src="images/projects/2.png" alt="" />
-                  </div>
-                  <div class="card-body">
-                    <h1>Freelance Landing Page</h1>
-                    <h6>Landing Page UI Kit</h6>
-                  </div>
-                </a>
-              </div>
-              <div class="pro-card-container">
-                <a href="#" class="projects-card">
-                  <div class="img-container">
-                    <img class="card-img" src="images/projects/3.png" alt="" />
-                  </div>
-                  <div class="card-body">
-                    <h1>Freelance Landing Page</h1>
-                    <h6>Landing Page UI Kit</h6>
-                  </div>
-                </a>
-              </div>
-              <div class="pro-card-container">
-                <a href="#" class="projects-card">
-                  <div class="img-container">
-                    <img class="card-img" src="images/projects/4.png" alt="" />
-                  </div>
-                  <div class="card-body">
-                    <h1>Freelance Landing Page</h1>
-                    <h6>Landing Page UI Kit</h6>
-                  </div>
-                </a>
-                <div class="two"></div>
-                <div class="three"></div>
-              </div>
-    
-              <div class="pro-card-container">
-                <a href="#" class="projects-card">
-                  <div class="img-container">
-                    <img class="card-img" src="images/projects/2.png" alt="" />
-                  </div>
-                  <div class="card-body">
-                    <h1>Freelance Landing Page</h1>
-                    <h6>Landing Page UI Kit</h6>
-                  </div>
-                </a>
-              </div>
-              <div class="pro-card-container">
-                <a href="#" class="projects-card">
-                  <div class="img-container">
-                    <img class="card-img" src="images/projects/3.png" alt="" />
-                  </div>
-                  <div class="card-body">
-                    <h1>Freelance Landing Page</h1>
-                    <h6>Landing Page UI Kit</h6>
-                  </div>
-                </a>
-              </div>
-              <div class="pro-card-container">
-                <a href="#" class="projects-card">
-                  <div class="img-container">
-                    <img class="card-img" src="images/projects/4.png" alt="" />
-                  </div>
-                  <div class="card-body">
-                    <h1>Freelance Landing Page</h1>
-                    <h6>Landing Page UI Kit</h6>
-                  </div>
-                </a>
-                <div class="two"></div>
-                <div class="three"></div>
-              </div>
-
-            </div>
-            <div class="btn-group pt-3">
-              <a href="" class="btn btn-secondary">Veiw all works</a>
-            </div>
-          </div>
-    
-          <div class="edu-exp" id="experience">
-            <div class="exp-container">
-              <h1><span class="gradient-text">Education</span></h1>
-              <a href="" class="exp-card">
-                <div class="border-bottom-animation"></div>
-                <h2>Stanford University</h2>
-                <div class="exp-desc">
-                  <h6>Frontens Web Developer Degree</h6>
-                  <li>2016-2020</li>
-                </div>
-              </a>
-              <a href="" class="exp-card">
-                <div class="border-bottom-animation"></div>
-                <h2>MIT University</h2>
-                <div class="exp-desc">
-                  <h6>User Experience Master</h6>
-                  <li>2012-2016</li>
-                </div>
-              </a>
-              <a href="" class="exp-card">
-                <div class="border-bottom-animation"></div>
-                <h2>New York University</h2>
-                <div class="exp-desc">
-                  <h6>Web Development Degree</h6>
-                  <li>2008-2012</li>
-                </div>
-              </a>
-            </div>
-            <div class="exp-container">
-              <h1><span class="gradient-text">Experience</span></h1>
-              <a href="" class="exp-card">
-                <div class="border-bottom-animation"></div>
-                <h2>Twitter Inc.</h2>
-                <div class="exp-desc">
-                  <h6>Product Manager</h6>
-                  <li>2022</li>
-                </div>
-              </a>
-              <a href="" class="exp-card">
-                <div class="border-bottom-animation"></div>
-                <h2>Tesla</h2>
-                <div class="exp-desc">
-                  <h6>Visual Designer</h6>
-                  <li>2018</li>
-                </div>
-              </a>
-              <a href="" class="exp-card">
-                <div class="border-bottom-animation"></div>
-                <h2>Apple</h2>
-                <div class="exp-desc">
-                  <h6>UI Designer</h6>
-                  <li>2016</li>
-                </div>
-              </a>
-            </div>
-          </div>
-    
-          <div class="contact" id="contact">
-            <div class="contact_headings">
-              <h1><span class="gradient-text">Get in touch</span></h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia
-                corrupti unde quod voluptate accusamus nam quos architecto
-                recusandae asperiores illo?
-              </p>
-              <div class="contact_details">
-                <a class="contact_item" href=""
-                  ><i class="icon icon-sms"></i><span>+92 347 721 1767</span></a
+                  </i>
+                  problems, one</span
                 >
-                <a class="contact_item" href=""
-                  ><i class="icon icon-mobile"></i><span>example@email.com</span></a
-                >
-              </div>
+                <br />
+                <span class="gradient-text">product at a time</span>
+              </h1>
             </div>
-            <div class="contact_form">
-              <form action="">
-                <div class="input-group">
-                  <div class="form__group field">
-                    <input
-                      id="full_name"
-                      required=""
-                      placeholder="Full Name"
-                      class="form__field"
-                      type="text"
-                    />
-                    <label class="form__label" for="full_name">Full Name</label>
-                  </div>
-                  <div class="form__group field">
-                    <input
-                      required=""
-                      placeholder="Name"
-                      class="form__field"
-                      type="email"
-                      id="email"
-                    />
-                    <label class="form__label" for="email">Email</label>
-                  </div>
-                  <div class="form__group field">
-                    <input
-                      required=""
-                      placeholder="Name"
-                      class="form__field"
-                      type="number"
-                      id="budget"
-                    />
-                    <label class="form__label" for="budget">Your Budget</label>
-                  </div>
-                  <div class="form__group field">
-                    <input
-                      required=""
-                      placeholder="Name"
-                      class="form__field"
-                      type="text"
-                      id="message"
-                    />
-                    <label class="form__label" for="message"
-                      >Tell me a bit more what you are looking for?</label
-                    >
-                  </div>
-                </div>
-    
-                <div class="btn-group mt-5">
-                  <a class="btn btn-primary" href="#">Send Message</a>
-                </div>
-              </form>
+            <div class="btn-group">
+              <a href="#" class="btn btn-primary">get in touch</a>
+              <a href="#" class="btn btn-secondary">view all works</a>
             </div>
           </div>
-    
-          <h1 class="content__title" data-splitting data-effect5>
-            <span>REMI</span><span>AHMAD</span>
-          </h1>
-    
-          <div class="social">
-            <div class="social-inner_container">
-              <div class="social-inner_container_items">
-                <a href="#" class="social-item">
-                  <div class="social-item_heading">
-                    <h6>Follow On</h6>
-                    <h2>Instagram</h2>
-                  </div>
-                  <i id="arrow"></i>
-                </a>
-                <a href="#" class="social-item">
-                  <div class="social-item_heading">
-                    <h6>Hope into</h6>
-                    <h2>Discord</h2>
-                  </div>
-                  <i id="arrow"></i>
-                </a>
-              </div>
-              <div class="social-inner_container_items">
-                <a href="#" class="social-item">
-                  <div class="social-item_heading">
-                    <h6>Follow On</h6>
-                    <h2>Twitter</h2>
-                  </div>
-                  <i id="arrow"></i>
-                </a>
-                <a href="#" class="social-item">
-                  <div class="social-item_heading">
-                    <h6>Follow On</h6>
-                    <h2>Github</h2>
-                  </div>
-                  <i id="arrow"></i>
-                </a>
-              </div>
+          <div class="work-list">
+            <a href="#" class="work-item">
+              <h1>UI/UX Design</h1>
+              <i id="arrow"></i>
+            </a>
+            <a href="#" class="work-item">
+              <h1>Graphic Design</h1>
+              <i id="arrow"></i>
+            </a>
+            <a href="#" class="work-item">
+              <h1>Web Design</h1>
+              <i id="arrow"></i>
+            </a>
+            <a href="#" class="work-item">
+              <h1>Product Design</h1>
+              <i id="arrow"></i>
+            </a>
+          </div>
+
+          <div class="counter">
+            <div class="counter-item">
+              <h1><span class="gradient-text counter-number">5+</span></h1>
+              <p>Years of Experience in Design</p>
+            </div>
+            <div class="line-right"></div>
+            <div class="counter-item">
+              <h1><span class="gradient-text counter-number">250+</span></h1>
+              <p>Successfully Projects Completed</p>
+            </div>
+            <div class="line-right"></div>
+            <div class="counter-item">
+              <h1><span class="gradient-text counter-number">75+</span></h1>
+              <p>Global Customers</p>
             </div>
           </div>
-          
+        </div>
+
+        <div class="projects" id="projects">
+          <div class="projects-header">
+            <h1>
+              <span class="another-text" data-splitting>Look at My</span>
+              <span class="gradient-text">Projects</span>
+            </h1>
+            <p class="another-text" data-splitting>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto,
+              nam. Temporibus earum inventore illo fugiat aperiam autem odio
+              doloremque minima?
+            </p>
+          </div>
+          <div class="project-showcase">
+            <div class="pro-card-container">
+              <a href="#" class="projects-card">
+                <div class="img-container">
+                  <img class="card-img" src="images/projects/1.png" alt="" />
+                </div>
+                <div class="card-body">
+                  <h1>Freelance Landing Page</h1>
+                  <h6>Landing Page UI Kit</h6>
+                </div>
+              </a>
+            </div>
+            <div class="pro-card-container">
+              <a href="#" class="projects-card">
+                <div class="img-container">
+                  <img class="card-img" src="images/projects/1.png" alt="" />
+                </div>
+                <div class="card-body">
+                  <h1>Freelance Landing Page</h1>
+                  <h6>Landing Page UI Kit</h6>
+                </div>
+              </a>
+            </div>
+            <div class="pro-card-container">
+              <a href="#" class="projects-card">
+                <div class="img-container">
+                  <img class="card-img" src="images/projects/1.png" alt="" />
+                </div>
+                <div class="card-body">
+                  <h1>Freelance Landing Page</h1>
+                  <h6>Landing Page UI Kit</h6>
+                </div>
+              </a>
+            </div>
+
+            <div class="pro-card-container">
+              <a href="#" class="projects-card">
+                <div class="img-container">
+                  <img class="card-img" src="images/projects/2.png" alt="" />
+                </div>
+                <div class="card-body">
+                  <h1>Freelance Landing Page</h1>
+                  <h6>Landing Page UI Kit</h6>
+                </div>
+              </a>
+            </div>
+            <div class="pro-card-container">
+              <a href="#" class="projects-card">
+                <div class="img-container">
+                  <img class="card-img" src="images/projects/3.png" alt="" />
+                </div>
+                <div class="card-body">
+                  <h1>Freelance Landing Page</h1>
+                  <h6>Landing Page UI Kit</h6>
+                </div>
+              </a>
+            </div>
+            <div class="pro-card-container">
+              <a href="#" class="projects-card">
+                <div class="img-container">
+                  <img class="card-img" src="images/projects/4.png" alt="" />
+                </div>
+                <div class="card-body">
+                  <h1>Freelance Landing Page</h1>
+                  <h6>Landing Page UI Kit</h6>
+                </div>
+              </a>
+              <div class="two"></div>
+              <div class="three"></div>
+            </div>
+
+            <div class="pro-card-container">
+              <a href="#" class="projects-card">
+                <div class="img-container">
+                  <img class="card-img" src="images/projects/2.png" alt="" />
+                </div>
+                <div class="card-body">
+                  <h1>Freelance Landing Page</h1>
+                  <h6>Landing Page UI Kit</h6>
+                </div>
+              </a>
+            </div>
+            <div class="pro-card-container">
+              <a href="#" class="projects-card">
+                <div class="img-container">
+                  <img class="card-img" src="images/projects/3.png" alt="" />
+                </div>
+                <div class="card-body">
+                  <h1>Freelance Landing Page</h1>
+                  <h6>Landing Page UI Kit</h6>
+                </div>
+              </a>
+            </div>
+            <div class="pro-card-container">
+              <a href="#" class="projects-card">
+                <div class="img-container">
+                  <img class="card-img" src="images/projects/4.png" alt="" />
+                </div>
+                <div class="card-body">
+                  <h1>Freelance Landing Page</h1>
+                  <h6>Landing Page UI Kit</h6>
+                </div>
+              </a>
+              <div class="two"></div>
+              <div class="three"></div>
+            </div>
+
+            <div class="pro-card-container">
+              <a href="#" class="projects-card">
+                <div class="img-container">
+                  <img class="card-img" src="images/projects/2.png" alt="" />
+                </div>
+                <div class="card-body">
+                  <h1>Freelance Landing Page</h1>
+                  <h6>Landing Page UI Kit</h6>
+                </div>
+              </a>
+            </div>
+            <div class="pro-card-container">
+              <a href="#" class="projects-card">
+                <div class="img-container">
+                  <img class="card-img" src="images/projects/3.png" alt="" />
+                </div>
+                <div class="card-body">
+                  <h1>Freelance Landing Page</h1>
+                  <h6>Landing Page UI Kit</h6>
+                </div>
+              </a>
+            </div>
+            <div class="pro-card-container">
+              <a href="#" class="projects-card">
+                <div class="img-container">
+                  <img class="card-img" src="images/projects/4.png" alt="" />
+                </div>
+                <div class="card-body">
+                  <h1>Freelance Landing Page</h1>
+                  <h6>Landing Page UI Kit</h6>
+                </div>
+              </a>
+              <div class="two"></div>
+              <div class="three"></div>
+            </div>
+          </div>
+          <div class="btn-group pt-3">
+            <a href="" class="btn btn-secondary">Veiw all works</a>
+          </div>
+        </div>
+
+        <div class="edu-exp" id="experience">
+          <div class="exp-container">
+            <h1><span class="gradient-text">Education</span></h1>
+            <a href="" class="exp-card">
+              <div class="border-bottom-animation"></div>
+              <h2>Stanford University</h2>
+              <div class="exp-desc">
+                <h6>Frontens Web Developer Degree</h6>
+                <li>2016-2020</li>
+              </div>
+            </a>
+            <a href="" class="exp-card">
+              <div class="border-bottom-animation"></div>
+              <h2>MIT University</h2>
+              <div class="exp-desc">
+                <h6>User Experience Master</h6>
+                <li>2012-2016</li>
+              </div>
+            </a>
+            <a href="" class="exp-card">
+              <div class="border-bottom-animation"></div>
+              <h2>New York University</h2>
+              <div class="exp-desc">
+                <h6>Web Development Degree</h6>
+                <li>2008-2012</li>
+              </div>
+            </a>
+          </div>
+          <div class="exp-container">
+            <h1><span class="gradient-text">Experience</span></h1>
+            <a href="" class="exp-card">
+              <div class="border-bottom-animation"></div>
+              <h2>Twitter Inc.</h2>
+              <div class="exp-desc">
+                <h6>Product Manager</h6>
+                <li>2022</li>
+              </div>
+            </a>
+            <a href="" class="exp-card">
+              <div class="border-bottom-animation"></div>
+              <h2>Tesla</h2>
+              <div class="exp-desc">
+                <h6>Visual Designer</h6>
+                <li>2018</li>
+              </div>
+            </a>
+            <a href="" class="exp-card">
+              <div class="border-bottom-animation"></div>
+              <h2>Apple</h2>
+              <div class="exp-desc">
+                <h6>UI Designer</h6>
+                <li>2016</li>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact" id="contact">
+          <div class="contact_headings">
+            <h1><span class="gradient-text">Get in touch</span></h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia
+              corrupti unde quod voluptate accusamus nam quos architecto
+              recusandae asperiores illo?
+            </p>
+            <div class="contact_details">
+              <a class="contact_item" href=""
+                ><i class="icon icon-sms"></i><span>+92 347 721 1767</span></a
+              >
+              <a class="contact_item" href=""
+                ><i class="icon icon-mobile"></i
+                ><span>example@email.com</span></a
+              >
+            </div>
+          </div>
+          <div class="contact_form">
+            <form action="">
+              <div class="input-group">
+                <div class="form__group field">
+                  <input
+                    id="full_name"
+                    required=""
+                    placeholder="Full Name"
+                    class="form__field"
+                    type="text"
+                  />
+                  <label class="form__label" for="full_name">Full Name</label>
+                </div>
+                <div class="form__group field">
+                  <input
+                    required=""
+                    placeholder="Name"
+                    class="form__field"
+                    type="email"
+                    id="email"
+                  />
+                  <label class="form__label" for="email">Email</label>
+                </div>
+                <div class="form__group field">
+                  <input
+                    required=""
+                    placeholder="Name"
+                    class="form__field"
+                    type="number"
+                    id="budget"
+                  />
+                  <label class="form__label" for="budget">Your Budget</label>
+                </div>
+                <div class="form__group field">
+                  <input
+                    required=""
+                    placeholder="Name"
+                    class="form__field"
+                    type="text"
+                    id="message"
+                  />
+                  <label class="form__label" for="message"
+                    >Tell me a bit more what you are looking for?</label
+                  >
+                </div>
+              </div>
+
+              <div class="btn-group mt-5">
+                <a class="btn btn-primary" href="#">Send Message</a>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <h1 class="content__title" data-splitting data-effect5>
+          <span>REMI</span><span>AHMAD</span>
+        </h1>
+
+        <div class="social">
+          <div class="social-inner_container">
+            <div class="social-inner_container_items">
+              <a href="#" class="social-item">
+                <div class="social-item_heading">
+                  <h6>Follow On</h6>
+                  <h2>Instagram</h2>
+                </div>
+                <i id="arrow"></i>
+              </a>
+              <a href="#" class="social-item">
+                <div class="social-item_heading">
+                  <h6>Hope into</h6>
+                  <h2>Discord</h2>
+                </div>
+                <i id="arrow"></i>
+              </a>
+            </div>
+            <div class="social-inner_container_items">
+              <a href="#" class="social-item">
+                <div class="social-item_heading">
+                  <h6>Follow On</h6>
+                  <h2>Twitter</h2>
+                </div>
+                <i id="arrow"></i>
+              </a>
+              <a href="#" class="social-item">
+                <div class="social-item_heading">
+                  <h6>Follow On</h6>
+                  <h2>Github</h2>
+                </div>
+                <i id="arrow"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
         <div class="footer-bottom" id="footer">
           <h6>Remi @ 2024</h6>
           <div class="go-to-top">GO TO TOP</div>
           <h6>All Rights Reserved.</h6>
         </div>
-        </div>
-        <svg
-          style="width: 0; height: 0; position: absolute"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <linearGradient id="svg-gradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="14.06%" stop-color="#b16cea" />
-            <stop offset="44.79%" stop-color="#ff5e69" />
-            <stop offset="71.87%" stop-color="#ff8a56" />
-            <stop offset="100%" stop-color="#ffa84b" />
-          </linearGradient>
-        </svg>
+      </div>
+      <svg
+        style="width: 0; height: 0; position: absolute"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <linearGradient id="svg-gradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="14.06%" stop-color="#b16cea" />
+          <stop offset="44.79%" stop-color="#ff5e69" />
+          <stop offset="71.87%" stop-color="#ff8a56" />
+          <stop offset="100%" stop-color="#ffa84b" />
+        </linearGradient>
+      </svg>
     </div>
   </body>
-  <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer" ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
   <script src="https://sarathsaleem.github.io/grained/grained.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
   <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js" integrity="sha512-EZI2cBcGPnmR89wTgVnN3602Yyi7muWo8y1B3a8WmIv1J9tYG+udH4LvmYjLiGp37yHB7FfaPBo8ly178m9g4Q==" crossorigin="anonymous" referrerpolicy="no-referrer" ></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js" integrity="sha512-OzC82YiH3UmMMs6Ydd9f2i7mS+UFL5f977iIoJ6oy07AJT+ePds9QOEtqXztSH29Nzua59fYS36knmMcv79GOg==" crossorigin="anonymous" referrerpolicy="no-referrer" ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"
+    integrity="sha512-EZI2cBcGPnmR89wTgVnN3602Yyi7muWo8y1B3a8WmIv1J9tYG+udH4LvmYjLiGp37yHB7FfaPBo8ly178m9g4Q=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"
+    integrity="sha512-OzC82YiH3UmMMs6Ydd9f2i7mS+UFL5f977iIoJ6oy07AJT+ePds9QOEtqXztSH29Nzua59fYS36knmMcv79GOg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
   <script src="script.js"></script>
-  
 </html>
