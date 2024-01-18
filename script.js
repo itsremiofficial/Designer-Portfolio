@@ -154,16 +154,16 @@ $(document).ready(function () {
     });
   });
 
-
   const goToTop = document.querySelector(".go-to-top");
-  // gsap.from(goToTop, {
-  //   y: -10, 
-  //   duration: 1,
-  //   ease: "expoScale(0.5,7,none)",
-  //   yoyo: true,
-  //   repeat: -1 
-  // });
-  
+  gsap.set(goToTop, { y: 3 });
+  const tlgoto = gsap.timeline({
+    yoyo: true,
+    repeat: -1,
+    ease: "sine.inOut",
+    duration: 0.3,
+  });
+  tlgoto.to(goToTop, { y: -3 });
+
   goToTop.addEventListener("click", function () {
     locoScroll.scrollTo(0);
   });
@@ -311,22 +311,25 @@ $(document).ready(function () {
     ease: "none",
   });
 
-
-  
   // TEXT REVEAL SCROLL ANIMATION STARTED
   const textReveal = document.querySelectorAll(".another-text");
-  textReveal.forEach((textWord) => {
+
+  textReveal.forEach((textWord, index) => {
     const words = textWord.querySelectorAll(".word");
-    
-    const theme = document.body.getAttribute('data-theme');
-    const bg = theme === 'light' ? '#000' : '#373843';
-    const fg = theme === 'light' ? '#fff' : '#8c8ea4';
+
+    const theme = document.body.getAttribute("data-theme");
+    const bg = theme === "light" ? "#000" : "#373843";
+    const fg = theme === "light" ? "#fff" : "#8c8ea4";
+
+    // Determine start and end based on index
+    const start = index < 2 ? "top top+=50%" : "top bottom-=15%";
+    const end = index < 2 ? "top top+=10%" : "bottom top+=50%";
 
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: words[0],
-        start: "top top+=50%",
-        end: "top top+=10%",
+        start: start,
+        end: end,
         scrub: true,
         // markers: true,
         toggleActions: "play play reverse reverse",
@@ -350,8 +353,8 @@ $(document).ready(function () {
       );
     });
   });
+
   // TEXT REVEAL SCROLL ANIMATION ENDED
-  
 
   // WORK SCROLL ANIMATION STARTED
   gsap.utils.toArray(".work-item").forEach((item) => {
@@ -361,7 +364,7 @@ $(document).ready(function () {
       {
         width: "92%",
         opacity: 1,
-        duration: 2,
+        duration: 1,
         ease: "power1.inOut",
         scrollTrigger: {
           trigger: item,
@@ -375,11 +378,10 @@ $(document).ready(function () {
   });
   // WORK SCROLL ANIMATION ENDED
 
-
   // COUNTER SCROLL ANIMATION STARTED
   document.querySelectorAll(".counter-number").forEach((counter) => {
     const endValue = parseInt(counter.textContent, 10);
-    
+
     const obj = { val: 0 };
 
     gsap.to(obj, {
@@ -400,5 +402,43 @@ $(document).ready(function () {
   });
   // COUNTER SCROLL ANIMATION ENDED
 
+  const selectors = [".exp-card", ".edu-card"];
+  selectors.forEach((selector) => {
+    document.querySelectorAll(selector).forEach((eachItem) => {
+      gsap.from(eachItem, {
+        right: "-200px",
+        opacity: 0,
+        scrollTrigger: {
+          trigger: eachItem,
+          start: "top bottom-=10%",
+          end: "bottom bottom-=25%",
+          scrub: true,
+          markers: true,
+        },
+      });
+    });
+  });
 
+  // EXPERIENCE BOTTOM BORDER ANIMATION STARTED
+  document.querySelectorAll(".exp-card").forEach((card) => {
+    gsap.fromTo(
+      card.querySelector(".border-bottom-animation"),
+      { width: "0%" },
+      {
+        width: "100%",
+        duration: 5,
+        ease: "sine.inOut",
+        scrollTrigger: {
+          trigger: card,
+          start: "top bottom-=25%",
+          end: "bottom center-=5%",
+          scrub: true,
+          // markers: true,
+        },
+      }
+    );
+  });
+  // EXPERIENCE BOTTOM BORDER ANIMATION ENDED
+
+  
 });
