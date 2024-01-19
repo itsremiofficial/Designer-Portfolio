@@ -61,9 +61,8 @@ $(document).ready(function () {
   };
 
   grained("#container", options);
-  // grained("#footer", options);
   grained("#hero-img", options);
-  // grained("#nav", options);
+  
   // ANIMATED GRAIN ENDED
 
   //  GSAP with Locomotive
@@ -317,9 +316,11 @@ $(document).ready(function () {
   textReveal.forEach((textWord, index) => {
     const words = textWord.querySelectorAll(".word");
 
-    const theme = document.body.getAttribute("data-theme");
-    const bg = theme === "light" ? "#000" : "#373843";
-    const fg = theme === "light" ? "#fff" : "#8c8ea4";
+    const theme = document.documentElement.getAttribute('data-theme');
+    const bg = theme === "dark" ? "#373843" : "#8c8ea4";
+    const fg = theme === "dark" ? "#8c8ea4" : "#373843";
+
+
 
     // Determine start and end based on index
     const start = index < 2 ? "top top+=50%" : "top bottom-=15%";
@@ -437,6 +438,23 @@ $(document).ready(function () {
         },
       }
     );
+  });
+
+  
+  // const timeli = gsap.timeline();
+  const onloadElem = [".social-item"];
+  onloadElem.forEach(element => {
+    gsap.from(element, {
+      duration: 1,
+      autoAlpha: 0,
+      y: 50,
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: element,
+        start: 'top 70%',
+        toggleActions: 'play reverse play reverse'
+      }
+    });
   });
   // EXPERIENCE BOTTOM BORDER ANIMATION ENDED
 });
