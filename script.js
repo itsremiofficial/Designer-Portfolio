@@ -1,4 +1,37 @@
 $(document).ready(function () {
+  //  GSAP with Locomotive
+  gsap.registerPlugin(ScrollTrigger);
+  const scroller = document.querySelector("#wrapper");
+
+  const locoScroll = new LocomotiveScroll({
+    el: scroller,
+    smooth: true,
+  });
+
+  locoScroll.on("scroll", ScrollTrigger.update);
+
+  ScrollTrigger.scrollerProxy(scroller, {
+    scrollTop(value) {
+      return arguments.length
+        ? locoScroll.scrollTo(value, 0, 0)
+        : locoScroll.scroll.instance.scroll.y;
+    },
+    getBoundingClientRect() {
+      return {
+        top: 0,
+        left: 0,
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+    },
+    pinType: scroller.style.transform ? "transform" : "fixed",
+  });
+
+  ScrollTrigger.defaults({
+    scroller: scroller,
+  });
+  // GSAP with Locomotive
+
   // THEME SWITCH STARTED
   const storageKey = "theme-preference";
 
@@ -62,41 +95,8 @@ $(document).ready(function () {
 
   grained("#container", options);
   grained("#hero-img", options);
-  
+
   // ANIMATED GRAIN ENDED
-
-  //  GSAP with Locomotive
-  gsap.registerPlugin(ScrollTrigger);
-  const scroller = document.querySelector("#wrapper");
-
-  const locoScroll = new LocomotiveScroll({
-    el: scroller,
-    smooth: true,
-  });
-
-  locoScroll.on("scroll", ScrollTrigger.update);
-
-  ScrollTrigger.scrollerProxy(scroller, {
-    scrollTop(value) {
-      return arguments.length
-        ? locoScroll.scrollTo(value, 0, 0)
-        : locoScroll.scroll.instance.scroll.y;
-    },
-    getBoundingClientRect() {
-      return {
-        top: 0,
-        left: 0,
-        width: window.innerWidth,
-        height: window.innerHeight,
-      };
-    },
-    pinType: scroller.style.transform ? "transform" : "fixed",
-  });
-
-  ScrollTrigger.defaults({
-    scroller: scroller,
-  });
-  // GSAP with Locomotive
 
   // GSAP for NAME ANIMATION STARTED
   Splitting();
@@ -278,24 +278,29 @@ $(document).ready(function () {
   // CURSOR MOVING ANIMATION FOR LINKS ENDED
 
   // CURSOR MOVING ANIMATION FOR LINKS ENDED
-  const boxes = gsap.utils.toArray(".pro-card-container");
+  const boxes = document.querySelectorAll(".projects-card");
 
-  boxes.forEach((box) => {
-    gsap.from(box, {
-      x: -200,
-      y: 200,
-      opacity: 0,
-      duration: 5,
-      // stagger: .3,
-      scrollTrigger: {
-        trigger: box,
-        start: "top bottom-=15%",
-        end: "bottom bottom-=10%",
-        scrub: true,
-        // markers: true,
-      },
-    });
+  const tlcards = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".pro-card-container",
+      start: "top 65%",
+      end: "bottom 50%",
+      scrub: true,
+    },
   });
+
+  tlcards.from(boxes, {
+    x: -200,
+    y: 200,
+    opacity: 0,
+    duration: 5,
+    stagger: 1.5,
+  });
+
+  
+
+
+
 
   gsap.to(".nav", {
     scrollTrigger: {
@@ -316,11 +321,9 @@ $(document).ready(function () {
   textReveal.forEach((textWord, index) => {
     const words = textWord.querySelectorAll(".word");
 
-    const theme = document.documentElement.getAttribute('data-theme');
+    const theme = document.documentElement.getAttribute("data-theme");
     const bg = theme === "dark" ? "#373843" : "#8c8ea4";
     const fg = theme === "dark" ? "#8c8ea4" : "#373843";
-
-
 
     // Determine start and end based on index
     const start = index < 2 ? "top top+=50%" : "top bottom-=15%";
@@ -403,7 +406,6 @@ $(document).ready(function () {
   });
   // COUNTER SCROLL ANIMATION ENDED
 
-
   const selectors = [".exp-card", ".edu-card"];
   selectors.forEach((selector) => {
     document.querySelectorAll(selector).forEach((eachItem) => {
@@ -439,22 +441,22 @@ $(document).ready(function () {
       }
     );
   });
+  // EXPERIENCE BOTTOM BORDER ANIMATION ENDED
 
-  
-  // const timeli = gsap.timeline();
-  const onloadElem = [".social-item"];
-  onloadElem.forEach(element => {
+  // FADE UP ANIMATION STARTED
+  const toFadeElem = [".social-item", ".contact_form", ".contact_headings"];
+  toFadeElem.forEach((element) => {
     gsap.from(element, {
       duration: 1,
       autoAlpha: 0,
       y: 50,
-      ease: 'power1.out',
+      ease: "power1.out",
       scrollTrigger: {
         trigger: element,
-        start: 'top 70%',
-        toggleActions: 'play reverse play reverse'
-      }
+        start: "top 70%",
+        toggleActions: "play reverse play reverse",
+      },
     });
   });
-  // EXPERIENCE BOTTOM BORDER ANIMATION ENDED
+  // FADE UP ANIMATION ENDED
 });
