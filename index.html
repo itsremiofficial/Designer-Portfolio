@@ -68,10 +68,17 @@
               });
             });
 
-            timel.fromTo(".paragraph .char", 
-            { opacity: 0, x: -10 },
-            { opacity: 1, x: 0, stagger: 0.02, ease: "power1.out", duration: 0.1 }
-          );
+            timel.fromTo(
+              ".paragraph .char",
+              { opacity: 0, x: -10 },
+              {
+                opacity: 1,
+                x: 0,
+                stagger: 0.02,
+                ease: "power1.out",
+                duration: 0.1,
+              }
+            );
           }
         }, 0);
       });
@@ -224,9 +231,10 @@
             UI/UX Design, Responsive Web Design and Visual Development.
           </p>
           <div class="btn-group">
-            <a href="" class="btn btn-primary">Get in touch</a>
-            
-            <a href="" class="button button--secondary"><span>View All Works</span></a>
+            <a id="gradient-button" href="" class="btn btn-primary"
+              >Get in touch</a
+            >
+            <a href="" class="btn btn-secondary">Veiw all works</a>
           </div>
         </div>
 
@@ -286,9 +294,10 @@
               </h1>
             </div>
             <div class="btn-group">
-              <a id="gradient-button" href="#" class="btn btn-primary">get in touch</a>
-            
-              <a href="" class="button button--secondary"><span>View All Works</span></a>
+              <a id="gradient-button" href="#" class="btn btn-primary"
+                >get in touch</a
+              >
+              <a href="#" class="btn btn-secondary">view all works</a>
             </div>
           </div>
           <div class="work-list">
@@ -412,14 +421,15 @@
             </div>
           </div>
           <div class="btn-group pt-3">
-            <a href="" class="button button--secondary"><span>View All Works</span></a>
-            <!-- <a href="" class="btn btn-secondary">Veiw all works</a> -->
+            <a href="" class="btn btn-secondary">Veiw all works</a>
           </div>
         </div>
 
         <div class="edu-exp" id="experience">
           <div class="exp-container">
-            <h1><span class="gradient-text">Education</span></h1>
+            <div class="title">
+              <span class="gradient-text">Education</span>
+            </div>
             <a href="" class="exp-card">
               <div class="border-bottom-animation"></div>
               <h2>Stanford University</h2>
@@ -446,7 +456,9 @@
             </a>
           </div>
           <div class="exp-container">
-            <h1><span class="gradient-text">Experience</span></h1>
+            <div class="title">
+              <span class="gradient-text">Experience</span>
+            </div>
             <a href="" class="exp-card">
               <div class="border-bottom-animation"></div>
               <h2>Twitter Inc.</h2>
@@ -476,20 +488,24 @@
 
         <div class="contact" id="contact">
           <div class="contact_headings">
-            <h1><span class="gradient-text">Get in touch</span></h1>
-            <p>
+            <div class="title toFadeUp">
+              <span class="gradient-text">Get in touch</span>
+            </div>
+
+            <p class="toFadeUp">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia
               corrupti unde quod voluptate accusamus nam quos architecto
               recusandae asperiores illo?
             </p>
             <div class="contact_details">
-              <a class="contact_item" href=""
-                ><i class="icon icon-sms"></i><span>+92 347 721 1767</span></a
-              >
-              <a class="contact_item" href=""
-                ><i class="icon icon-mobile"></i
-                ><span>example@email.com</span></a
-              >
+              <a class="contact_item" href="">
+                <i class="icon icon-sms"></i>
+                <span>+92 347 721 1767</span>
+              </a>
+              <a class="contact_item" href="">
+                <i class="icon icon-mobile"></i>
+                <span>example@email.com</span>
+              </a>
             </div>
           </div>
           <div class="contact_form">
@@ -540,7 +556,9 @@
               </div>
 
               <div class="btn-group mt-5">
-                <a id="gradient-button" class="btn btn-primary" href="#">Send Message</a>
+                <a id="gradient-button" class="btn btn-primary" href="#"
+                  >Send Message</a
+                >
               </div>
             </form>
           </div>

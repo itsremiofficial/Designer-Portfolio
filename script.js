@@ -406,21 +406,21 @@ $(document).ready(function () {
   });
   // COUNTER SCROLL ANIMATION ENDED
 
-  const selectors = [".exp-card", ".edu-card"];
-  selectors.forEach((selector) => {
-    document.querySelectorAll(selector).forEach((eachItem) => {
-      gsap.from(eachItem, {
-        right: "-200px",
-        opacity: 0,
-        scrollTrigger: {
-          trigger: eachItem,
-          start: "top bottom-=10%",
-          end: "bottom bottom-=25%",
-          scrub: true,
-        },
-      });
-    });
-  });
+  // const selectors = [".exp-card"];
+  // selectors.forEach((selector) => {
+  //   document.querySelectorAll(selector).forEach((eachItem) => {
+  //     gsap.from(eachItem, {
+  //       right: "-200px",
+  //       opacity: 0,
+  //       scrollTrigger: {
+  //         trigger: eachItem,
+  //         start: "top bottom-=10%",
+  //         end: "bottom bottom-=25%",
+  //         scrub: true,
+  //       },
+  //     });
+  //   });
+  // });
 
   // EXPERIENCE BOTTOM BORDER ANIMATION STARTED
   document.querySelectorAll(".exp-card").forEach((card) => {
@@ -444,16 +444,16 @@ $(document).ready(function () {
   // EXPERIENCE BOTTOM BORDER ANIMATION ENDED
 
   // FADE UP ANIMATION STARTED
-  const toFadeElem = [".social-item", ".contact_form", ".contact_headings"];
+  const toFadeElem = ["toFadeUp", ".contact_item", ".input-group", ".social-item", ".contact_headings", ".exp-card", ".exp-container > .title"];
   toFadeElem.forEach((element) => {
     gsap.from(element, {
-      duration: 1,
+      duration: 0.5,
       autoAlpha: 0,
       y: 50,
       ease: "power1.out",
       scrollTrigger: {
         trigger: element,
-        start: "top 70%",
+        start: "top 80%",
         toggleActions: "play reverse play reverse",
       },
     });

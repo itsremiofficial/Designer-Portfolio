@@ -797,7 +797,21 @@ h1.title {
 }
 
 [data-theme="dark"] .projects-card:hover,
-.projects-card:hover {
+.projects-card:hover{
+box-shadow:
+0px 0px 1px rgba(3, 7, 18, 0.01),
+0px 0px 3px rgba(3, 7, 18, 0.02),
+0px 0px 6px rgba(3, 7, 18, 0.02),
+0px 0px 10px rgba(3, 7, 18, 0.03),
+0px 0px 16px rgba(3, 7, 18, 0.04),
+0px 0px 23px rgba(3, 7, 18, 0.05),
+0px 0px 31px rgba(3, 7, 18, 0.06),
+0px 0px 30px rgba(3, 7, 18, 0.07),
+0px 0px 30px rgba(3, 7, 18, 0.08),
+0px 0px 41px rgba(3, 7, 18, 0.06);
+
+}
+.projects-card:hover .img-container{
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11),
     0 4px 4px rgba(0, 0, 0, 0.11), 0 8px 8px rgba(0, 0, 0, 0.11),
     0 16px 16px rgba(0, 0, 0, 0.11), 0 32px 32px rgba(0, 0, 0, 0.11);
@@ -810,9 +824,8 @@ h1.title {
   position: relative;
   overflow: hidden;
   aspect-ratio: 16/9;
-  box-shadow: 0px 0px 1.5px rgba(0, 0, 0, 0.3), 0px 1px 1px rgba(3, 7, 18, 0.2),
-    0px 5px 4px rgba(3, 7, 18, 0.3), 0px 12px 9px rgba(3, 7, 18, 0.05),
-    0px 20px 15px rgba(3, 7, 18, 0.06), 0px 32px 24px rgba(3, 7, 18, 0.08);
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.23);
+  transition: box-shadow 0.5s ease-in-out;
 }
 
 img.card-img {
@@ -829,8 +842,9 @@ img.card-img {
     flex: 1 1 50%;
     margin: 1rem;
 
-    h1 {
+    .title {
       font: 800 45px/1 var(--main-font);
+      margin-bottom: 2rem;
     }
     .exp-card {
       position: relative;
@@ -1003,7 +1017,7 @@ img.card-img {
     flex: 1 1 30%;
     max-width: 500px;
 
-    h1 {
+    .title {
       font: 800 calc(var(--title-size) - 10px) / 1 var(--main-font);
       margin: 0 0;
     }
@@ -1984,79 +1998,4 @@ input::-webkit-inner-spin-button {
 
 .paragraph {
   white-space: nowrap;
-}
-
-
-
-
-.button {
-	pointer-events: auto;
-	cursor: pointer;
-	background: transparent;
-	border: none;
-	padding: 1.2rem 2.4rem;
-	margin: 0;
-	font-family: inherit;
-	font-size: inherit;
-	position: relative;
-	display: inline-block;
-}
-
-.button::before,
-.button::after {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
-
-:root{
---secondary-button-hover_text: red;
---secondary-button-hover_bg: red;
---secondary-button_text: green;
---secondary-button_bg: green;
-}
-
-
-[data-theme="dark"]:root{
---secondary-button_text: var(--white-primary);
---secondary-button_bg: var(--white-primary);
---secondary-button-hover_text: rgba(var(--black-secondary), 1);
---secondary-button-hover_bg: white;
-}
-
-
-.button--secondary {
-	text-transform: uppercase;
-	letter-spacing: 0.05rem;
-	font: 900 0.85rem/1 var(--main-font);
-	border-radius: 10rem;
-	overflow: hidden;
-	color: var(--secondary-button_text);
-  border: 2px solid var(--secondary-button_bg);
-}
-
-.button--secondary span {
-	position: relative;
-}
-
-.button--secondary::before {
-	content: '';
-  background: transparent;
-	width: 120%;
-	height: 120%;
-	left: -10%;
-	top: -10%;
-	transform: skew(30deg);
-	transition: transform 1s cubic-bezier(0.3, 1, 0.8, 1);
-}
-
-.button--secondary:hover::before {
-	transform: translate3d(100%,0,0);
-	color: var(--secondary-button-hover_text);
-  background: white;
-}
-.button--secondary:hover{
-	color: var(--secondary-button-hover_text);
 }
